@@ -1,4 +1,8 @@
 # AtheroVision: coronary artery disease risk prototype
+**🔗 Live demo:** https://athero-vision.vercel.app
+*The model server runs on a free tier: if it has been idle, the first prediction can take up to a minute to wake up. After that it's instant.*
+
+**🎬 Demo video:** https://www.youtube.com/watch?v=lBzC9CKA5Do
 
 > **Educational decision-support prototype only.** Predictions are model estimates, not confirmed
 > diagnoses. This application is not a substitute for professional clinical assessment or diagnostic imaging.
