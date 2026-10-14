@@ -1,0 +1,225 @@
+{
+  "script": "scripts/test_vessel_models.py",
+  "python": "3.13.5",
+  "scikit_learn": "1.9.1",
+  "targets": [
+    "LCX",
+    "RCA"
+  ],
+  "outer_cv": {
+    "type": "RepeatedStratifiedKFold",
+    "n_splits": 5,
+    "n_repeats": 5,
+    "random_state": 42,
+    "stratified_on": "each target"
+  },
+  "threshold": 0.5,
+  "bootstrap": {
+    "n": 2000,
+    "seed": 20261012,
+    "unit": "patient (5 OOF predictions kept together)",
+    "statistic": "repeat-averaged pooled OOF metric",
+    "paired": true
+  },
+  "candidates": {
+    "baseline": {
+      "feature_set": "clinical",
+      "estimator": "cloned from deployed baseline",
+      "purpose": "current deployed model (cloned settings)"
+    },
+    "lr_balanced_clinical": {
+      "feature_set": "clinical",
+      "estimator": "LogisticRegression(class_weight='balanced', max_iter=5000)",
+      "purpose": "class weighting"
+    },
+    "lr_strongreg_clinical": {
+      "feature_set": "clinical",
+      "estimator": "LogisticRegression(C=0.1, max_iter=5000)",
+      "purpose": "stronger L2 regularization"
+    },
+    "lr_strongreg_reduced": {
+      "feature_set": "reduced",
+      "estimator": "LogisticRegression(C=0.1, max_iter=5000)",
+      "purpose": "stronger L2 regularization on the 48-input set"
+    },
+    "rf_conservative_reduced": {
+      "feature_set": "reduced",
+      "estimator": "RandomForestClassifier(max_depth=5, min_samples_leaf=10, n_estimators=500, n_jobs=-1, random_state=42)",
+      "purpose": "conservative random forest"
+    }
+  },
+  "feature_sets": {
+    "clinical": [
+      "Age",
+      "Sex",
+      "Typical Chest Pain",
+      "DM",
+      "HTN",
+      "DLP",
+      "Current Smoker"
+    ],
+    "reduced": [
+      "Age",
+      "Sex",
+      "BMI",
+      "DM",
+      "HTN",
+      "Current Smoker",
+      "EX-Smoker",
+      "FH",
+      "CRF",
+      "CVA",
+      "Airway disease",
+      "Thyroid Disease",
+      "DLP",
+      "BP",
+      "PR",
+      "Edema",
+      "Weak Peripheral Pulse",
+      "Lung rales",
+      "Systolic Murmur",
+      "Diastolic Murmur",
+      "Typical Chest Pain",
+      "Dyspnea",
+      "Function Class",
+      "Atypical",
+      "Nonanginal",
+      "Q Wave",
+      "St Elevation",
+      "St Depression",
+      "Tinversion",
+      "LVH",
+      "Poor R Progression",
+      "BBB",
+      "FBS",
+      "CR",
+      "TG",
+      "LDL",
+      "HDL",
+      "BUN",
+      "ESR",
+      "HB",
+      "K",
+      "Na",
+      "WBC",
+      "Lymph",
+      "PLT",
+      "EF-TTE",
+      "Region RWMA",
+      "VHD"
+    ]
+  },
+  "forbidden_input_columns": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+  ],
+  "labels": {
+    "LCX": {
+      "positive": "Stenotic",
+      "negative": "Normal"
+    },
+    "RCA": {
+      "positive": "Stenotic",
+      "negative": "Normal"
+    }
+  },
+  "baseline_reproduction": {
+    "LCX": {
+      "max_abs_oof_diff": 9.71445146547012e-17,
+      "max_abs_fold_auc_diff": 1.1102230246251565e-16,
+      "reproduced": true
+    },
+    "RCA": {
+      "max_abs_oof_diff": 9.71445146547012e-17,
+      "max_abs_fold_auc_diff": 1.1102230246251565e-16,
+      "reproduced": true
+    }
+  },
+  "warnings": {
+    "convergence": 0,
+    "unknown_category": 0,
+    "other": 0
+  },
+  "input_sha256": {
+    "data/raw/extention of Z-Alizadeh sani dataset.xlsx": "739343245c2ba578b541370217531750d8e936022f928b83e0d91756caa3ff0b",
+    "config/model_selection.json": "df9d7586e832b718db95a7cb8fa0cf6188c4e1d7ca8383382e5def50da747f1e",
+    "models/phase1_candidates/metadata.json": "07de517d4988150cc42eed42b6b38d9c0b6989cf4bbb1ef8a70384497e90fef3",
+    "reports/final_ml_evaluation/oof_per_repeat_selected.csv": "538d232cf151278958a9c92445a708b96cfbd886baa61181b8d3b4ae6106a88c",
+    "reports/phase1_modeling/cv_fold_metrics.csv": "4bb90e561cab6f5fccfe50f6d7fa8e45a8edda928a7f61f867bee44c38b70113",
+    "models/phase1_candidates/Cath__logreg_all.joblib": "8195a0fa03e6313b80f8054b7826a98ca86983d27778c618ca0a56411e967fd7",
+    "models/phase1_candidates/Cath__logreg_clinical.joblib": "806b118a26c28d810fa67aab82acd51592e331d0450920d169c4890a18479501",
+    "models/phase1_candidates/Cath__logreg_reduced.joblib": "b27f7886cff8b2388a8ae724b378679523c0aa7964347bb9430693df887aeb50",
+    "models/phase1_candidates/Cath__rf_all.joblib": "fa49c380731a05d0cfd80bf5543b32411e795841954a88e2638ba42d410ca1ba",
+    "models/phase1_candidates/Cath__rf_reduced.joblib": "2b430152deb1198b83d8c3b85b5b97cea037ba3f06a285537f5ec6c1d81ca34e",
+    "models/phase1_candidates/LAD__logreg_all.joblib": "cc6e5bd8be319ed675132382d886aa52d3f991c01958caf62193ff6a833774b7",
+    "models/phase1_candidates/LAD__logreg_clinical.joblib": "b05c4d159c18ac9cef50531c4561cccc187eb5c01ba07a77da0dcb4ff5b1dd49",
+    "models/phase1_candidates/LAD__logreg_reduced.joblib": "7af633fdb4af6d44a679dbd21995f8c615fc3052e648d8dcedd7dccbaa13c450",
+    "models/phase1_candidates/LAD__rf_all.joblib": "b9d69590bb0f12e0938f11f5416477449e3b2a38fa1715909a7ba900b9400b95",
+    "models/phase1_candidates/LAD__rf_reduced.joblib": "04ee2c01869a50163ec3ae14b140915ddf6ccb321cd1a524f7709be630e042b9",
+    "models/phase1_candidates/LCX__logreg_all.joblib": "fa3a7694e34101a8cb7628f8fa9c30d2e4ae0fd5d98b4f958fd897c7706fed56",
+    "models/phase1_candidates/LCX__logreg_clinical.joblib": "44d4a2b34f97e18c69d82ab522e02c211235b75a9b62cdb1cca61330877e5fbf",
+    "models/phase1_candidates/LCX__logreg_reduced.joblib": "58cd368305461c7c73b10fd2a9845fa8426ec87a39ad5fb4663c205f263a5e26",
+    "models/phase1_candidates/LCX__rf_all.joblib": "a85c3ac422c998618a54cd9f2411f2ea83cbe9ea47e6aa8793d9b0f105fe9a31",
+    "models/phase1_candidates/LCX__rf_reduced.joblib": "e304c253c2527bf4eb3038578ee36ae82a9d776d0640310b1fb232f498ed9ad1",
+    "models/phase1_candidates/RCA__logreg_all.joblib": "857026696aec32448c5c58713e2db3ea19b0a4091d5449505e48238df6c5f0d2",
+    "models/phase1_candidates/RCA__logreg_clinical.joblib": "dfa6626bc9048365710cfc5902e3162ff055a9c8f9cae2b013e34fec03ed2242",
+    "models/phase1_candidates/RCA__logreg_reduced.joblib": "a8460853ecfd739b5bf66879ae2d3a5edbcfa5e078127acabd2ddac6a4b074b7",
+    "models/phase1_candidates/RCA__rf_all.joblib": "a51f18012c5efb52a0328c123fd74f5ee18140a6b669c1c8bdcc3a41f91a57f1",
+    "models/phase1_candidates/RCA__rf_reduced.joblib": "b8d8fa0207a3599d65c98499f8ee62000effb9de4e339e80c4bc461ce8d0a5c0",
+    "scripts/audit_step2.py": "162fc9d638d79af965a8ca4130cecc0c9bf5558934633b0612f9ab4e4d9d238a",
+    "scripts/build_model_selection.py": "e8cf52e771c205bfb70b803ac633cfb705f442418973c837964ce35ead87ef41",
+    "scripts/check_explain.py": "9cf4b5fdc683d4c6849a407b2999f397edc2cfa6d4f6d52cf47d7c8bbef73876",
+    "scripts/check_inference.py": "f1d81e14517047f5a529c5d648f777856fcc1bce322d97e4c964e9a848d799e9",
+    "scripts/final_ml_evaluation.py": "27e707be064f776dc0eb33fb4063a3b0b6a2e4a5986b33f0b2df14e550b65f64",
+    "scripts/test_lad_calibration.py": "ae356d363c779a0d966649e3cc16ed6a8b4d2da70e94bad1e91ee65382d26db1",
+    "scripts/test_vessel_models.py": "3d6edfb5213803f9c724304110eb41ba08035679d50782a1583abe0f124bcb7c",
+    "scripts/train_phase1.py": "842f1af2b12f6e5d03ce5d6cae184bdb4edd868ad3e74949134946804fa8ff93",
+    "reports/audit_step2/auc_ci_width.csv": "80f920187250bb8415ec549a8b353f0b78490cec43bb46683aa4b1ba5ebf8f49",
+    "reports/audit_step2/audit_step2_output.txt": "f38100217035819e1db62a240e5aa97113e9ac2aecf41f74dd7c9234aca3e0ee",
+    "reports/audit_step2/draft_data_dictionary.csv": "7388025a3bd4b8184626dcf0fb3069f4144e60acb5f2717764c9d1e76b756676",
+    "reports/audit_step2/high_numeric_correlations.csv": "2eb2ecb3181cf5b37c2bf0834c1bd53ef49cfb5d3d47960817f4b27278eb872b",
+    "reports/audit_step2/joint_vessel_patterns.csv": "260e3b24ee2ef14572ec6d7b62c2d6e9414992c8b2d24daf719e3ed71a379ebf",
+    "reports/audit_step2/numeric_summary.csv": "34e4267ed6cae4ea8fdec30748dfa9558ab8a85a676b3f56b1b6a7eddb444c3d",
+    "reports/audit_step2/target_inconsistent_rows.csv": "c5cc2578c6db3ee83613acefe86f0f983c7db074a36126bf45665965045257c6",
+    "reports/audit_step2/univariate_auc_screen.csv": "dd7b2fb72a8233511e4ef34cf30fcbe0028a65a8375bc6a68a79aa27479bd78b",
+    "reports/audit_step2/validation_class_counts.csv": "3957dec80d0998170d4632752efd0c1fb7f945d6714d4e5c8ded26261fa51b34",
+    "reports/final_ml_evaluation/bootstrap_confidence_intervals.csv": "6486e77ed83bee373ab1dccb5925c76f066761f07709024d5038f04ed2b88adf",
+    "reports/final_ml_evaluation/calibration_bins.csv": "c7cebb30dca6ff59299572e5b632639ebd9d27bef7a0f4d6f8fe7017c5d5c5fa",
+    "reports/final_ml_evaluation/calibration_Cath.svg": "e2b8cc27f3c377ec950560e8602d0bbf049cc5fa4b0069285e983defa97c839b",
+    "reports/final_ml_evaluation/calibration_LAD.svg": "5075f901ab3b255f5c8a89bde84c1a842e4579f1aaf31e8c1fbcc2d9844d28d4",
+    "reports/final_ml_evaluation/calibration_LCX.svg": "c9aa4c91189f77d2016827cc871e28ee2df50c793119cdd0cc57ea48958f25ae",
+    "reports/final_ml_evaluation/calibration_RCA.svg": "09f6e3846f69f379030cd4b1d11a8566ef26706f799a7a7d35c88d2768859a34",
+    "reports/final_ml_evaluation/calibration_report.md": "f455873ccc8a07dcc0310dfdcd7e96757bed3e45bb5b5a7de8ed528809651dad",
+    "reports/final_ml_evaluation/calibration_summary.csv": "54a0b23478c510774a32815f7a33f48df0cdcf5b2e8ecdee572f5bca29250068",
+    "reports/final_ml_evaluation/evaluation_audit.md": "6b428aa86814d22c273c213ddfdc3faa8dc659c4a273deb588156ccd2cf39cfd",
+    "reports/final_ml_evaluation/final_ml_evaluation_log.txt": "f712b932d7650aafd7d5299ad1b0207fe1434e7ccb6f62aeaa50817cc1c84d45",
+    "reports/final_ml_evaluation/row93_predictions.csv": "88872649e3d3d3101f13bd9ac49a2814770f0a4f806f72752a87afeb93953621",
+    "reports/final_ml_evaluation/row93_sensitivity.csv": "d8d1d04d40a44f5e32fca2484b775c48f39ce9932944b0b8c535283456e35837",
+    "reports/final_ml_evaluation/threshold_tradeoffs.csv": "dfb8ead78c92a7b64cc08c941e80f8a8f66d5d350be55edf7dd14ba375c9d5dd",
+    "reports/lad_calibration/calibration_bins.csv": "376f737a6e73f0fa3ee49719e94be89376a7fb4bcae72390b9e2d95fc09ce176",
+    "reports/lad_calibration/calibration_comparison.csv": "53724fe9d1ef3910dd0787ddc90d0f1f2dafa3d8a171e32a3a8df3e75f125aa6",
+    "reports/lad_calibration/calibration_LAD_baseline.svg": "fb43f7d1fa87c2c98c0b7929858a5567ca49defca1e4db4e23ebffb69b752421",
+    "reports/lad_calibration/calibration_LAD_sigmoid.svg": "2a4667dd267a3e52e7c0409253cc84484192b62bbb32e0e2fb7020e804ec0eea",
+    "reports/lad_calibration/calibration_report.md": "845eae68efe1f3af34297e3a21beafc299088cb5412f325ea597263ad0e69c87",
+    "reports/lad_calibration/fit_warnings.csv": "10c373e566b7cddc8209f40d033ffa9f8313594e1d868155b6cd2c84d2f35f7e",
+    "reports/lad_calibration/fold_metrics.csv": "342bd048220dd3f4ae9f2ab612ecd43ac2daaefa6b9b869ec85e694c6b14eea1",
+    "reports/lad_calibration/lad_calibration_log.txt": "2ae8c32063d90c281841df8a51271ca17cd9b6a14b998ded2c14201d925416cd",
+    "reports/lad_calibration/lad_calibration_predictions.csv": "2c0d184b2afa332992447e5cabd2c1ce8f73f8f48b1dc1e5ea2ed3067b679492",
+    "reports/lad_calibration/repeat_metrics.csv": "d293c9b42461d978af8d1deb9dc709cc0e62d4062260977c46d2ddc08bf4c4d5",
+    "reports/lad_calibration/run_config.json": "46d07571053f61a08d4f00859b76d021b7876990ca842831f06c2098eb6197ae",
+    "reports/model_selection/artifact_verification.txt": "2a771547f484bd38fbf42738b277bb32ba989140f76e530b168223050ee205d6",
+    "reports/model_selection/model_selection_report.md": "740a3d0e7d5432fa9d63fa4f97e67448bfccd95fe32c105bec71e1b1480cfa48",
+    "reports/phase1_modeling/confusion_matrices_oof.csv": "5d344d8d8866342632019e7fa21f79612626ce934845627442e958f9960818df",
+    "reports/phase1_modeling/cv_summary.csv": "ddb5bb778673e737e63f40f616f21312647339d0682cb6ebf09a3bde175e12ff",
+    "reports/phase1_modeling/feature_check_output.txt": "822de86948822f2d2c44bbc3950020622ac91eb47d8fb076936e7b9919f81dfa",
+    "reports/phase1_modeling/oof_predictions.csv": "017fd41a390c2f353ae8c8ea27e73cf8f1c497e7070c81d372a860bfdff68a68",
+    "reports/phase1_modeling/paired_auc_comparison.csv": "f6fc77ed9987596faccbe6a86971b214409932e89b5f0e338ae26d27788c17a3",
+    "reports/phase1_modeling/phase1_output.txt": "646bb6647fd4b4a20d5eec1041f279b0dd5c44cce5ee95fef6c8607cda94a896",
+    "reports/phase1_modeling/sensitivity_inconsistent_row.csv": "68db52bd369819b11e0e7ecb00baf3f430ea15e32172d41c379c526c52034486",
+    "src/cad/__init__.py": "8d301ac8863584e08aa79fb2ffc081c138d3e5ad5f4faec931850d568c63f3a6",
+    "src/cad/explain.py": "3b828351d5cd0dd69d0929bb9fa65da2d325bd40adb10bcabac1e7b92a273318",
+    "src/cad/inference.py": "f9d3cdc05e7841fdf1545842c8932cb051792a91cad7ff452bbaed8919432313"
+  }
+}

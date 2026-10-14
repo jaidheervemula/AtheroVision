@@ -1,0 +1,15 @@
+feature,level,n_patients,in_clinical_set
+EX-Smoker,1,10,False
+CRF,Y,6,False
+CVA,Y,5,False
+Airway disease,Y,11,False
+Thyroid Disease,Y,7,False
+Edema,1,12,False
+Weak Peripheral Pulse,Y,5,False
+Lung rales,Y,11,False
+Diastolic Murmur,Y,9,False
+St Elevation,1,14,False
+Poor R Progression,Y,9,False
+BBB,LBBB,13,False
+BBB,RBBB,8,False
+VHD,Severe,11,False

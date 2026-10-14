@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="500" viewBox="0 0 460 500" font-family="Arial, sans-serif" font-size="12">
+<rect width="460" height="500" fill="white"/>
+<text x="230.0" y="20" text-anchor="middle" font-size="14" font-weight="bold">Calibration: LCX (logreg_clinical)</text>
+<text x="230.0" y="38" text-anchor="middle" fill="#555">Out-of-fold, 303 patients, 10 equal-count bins. Not a patient-level result.</text>
+<line x1="64.0" y1="404" x2="64.0" y2="54" stroke="#eee"/>
+<line x1="64" y1="404.0" x2="440" y2="404.0" stroke="#eee"/>
+<text x="64.0" y="420" text-anchor="middle">0.0</text>
+<text x="56" y="408.0" text-anchor="end">0.0</text>
+<line x1="139.2" y1="404" x2="139.2" y2="54" stroke="#eee"/>
+<line x1="64" y1="334.0" x2="440" y2="334.0" stroke="#eee"/>
+<text x="139.2" y="420" text-anchor="middle">0.2</text>
+<text x="56" y="338.0" text-anchor="end">0.2</text>
+<line x1="214.4" y1="404" x2="214.4" y2="54" stroke="#eee"/>
+<line x1="64" y1="264.0" x2="440" y2="264.0" stroke="#eee"/>
+<text x="214.4" y="420" text-anchor="middle">0.4</text>
+<text x="56" y="268.0" text-anchor="end">0.4</text>
+<line x1="289.6" y1="404" x2="289.6" y2="54" stroke="#eee"/>
+<line x1="64" y1="193.99999999999997" x2="440" y2="193.99999999999997" stroke="#eee"/>
+<text x="289.6" y="420" text-anchor="middle">0.6</text>
+<text x="56" y="197.99999999999997" text-anchor="end">0.6</text>
+<line x1="364.8" y1="404" x2="364.8" y2="54" stroke="#eee"/>
+<line x1="64" y1="123.99999999999999" x2="440" y2="123.99999999999999" stroke="#eee"/>
+<text x="364.8" y="420" text-anchor="middle">0.8</text>
+<text x="56" y="127.99999999999999" text-anchor="end">0.8</text>
+<line x1="440.0" y1="404" x2="440.0" y2="54" stroke="#eee"/>
+<line x1="64" y1="54.0" x2="440" y2="54.0" stroke="#eee"/>
+<text x="440.0" y="420" text-anchor="middle">1.0</text>
+<text x="56" y="58.0" text-anchor="end">1.0</text>
+<rect x="64" y="54" width="376" height="350" fill="none" stroke="#333"/>
+<line x1="64" y1="404" x2="440" y2="54" stroke="#888" stroke-dasharray="6,4" stroke-width="1.5"/>
+<rect x="75.28" y="64.50000000000001" width="190" height="42" fill="white" stroke="#ccc"/>
+<line x1="83.28" y1="77.50000000000001" x2="109.28" y2="77.50000000000001" stroke="#888" stroke-dasharray="6,4" stroke-width="1.5"/>
+<text x="115.28" y="81.50000000000001">Ideal calibration (y = x)</text>
+<circle cx="96.28" cy="95.50000000000001" r="4.5" fill="#1f5fa8"/>
+<text x="115.28" y="99.50000000000001">Bin, with 95% Wilson interval</text>
+<line x1="96.33240113474542" y1="392.2875873668746" x2="96.33240113474542" y2="316.84898500638036" stroke="#1f5fa8" stroke-width="1.5"/>
+<line x1="119.28731110051207" y1="386.0302959237433" x2="119.28731110051207" y2="303.01535065965123" stroke="#1f5fa8" stroke-width="1.5"/>
+<line x1="137.2281340045675" y1="379.1761803309602" x2="137.2281340045675" y2="289.7785404625739" stroke="#1f5fa8" stroke-width="1.5"/>
+<line x1="167.19887262268486" y1="336.6939656560383" x2="167.19887262268486" y2="224.72904034840593" stroke="#1f5fa8" stroke-width="1.5"/>
+<line x1="197.25829237098353" y1="327.44204228593816" x2="197.25829237098353" y2="213.29636251761727" stroke="#1f5fa8" stroke-width="1.5"/>
+<line x1="227.14188269249814" y1="327.44204228593816" x2="227.14188269249814" y2="213.29636251761727" stroke="#1f5fa8" stroke-width="1.5"/>
+<line x1="248.66118621951196" y1="255.87981625604155" x2="248.66118621951196" y2="140.06638014129192" stroke="#1f5fa8" stroke-width="1.5"/>
+<line x1="272.50986142391923" y1="233.27095965159407" x2="272.50986142391923" y2="121.30603434396168" stroke="#1f5fa8" stroke-width="1.5"/>
+<line x1="306.66065124635844" y1="209.56905715509092" x2="306.66065124635844" y2="103.63873443868718" stroke="#1f5fa8" stroke-width="1.5"/>
+<line x1="352.12888552745017" y1="287.9615207048919" x2="352.12888552745017" y2="170.03847929510817" stroke="#1f5fa8" stroke-width="1.5"/>
+<polyline points="96.3,370.1 119.3,358.8 137.2,347.5 167.2,287.3 197.3,275.7 227.1,275.7 248.7,194.0 272.5,170.7 306.7,147.3 352.1,229.0" fill="none" stroke="#1f5fa8" stroke-width="1.5"/>
+<circle cx="96.3" cy="370.1" r="4.5" fill="#1f5fa8"/>
+<circle cx="119.3" cy="358.8" r="4.5" fill="#1f5fa8"/>
+<circle cx="137.2" cy="347.5" r="4.5" fill="#1f5fa8"/>
+<circle cx="167.2" cy="287.3" r="4.5" fill="#1f5fa8"/>
+<circle cx="197.3" cy="275.7" r="4.5" fill="#1f5fa8"/>
+<circle cx="227.1" cy="275.7" r="4.5" fill="#1f5fa8"/>
+<circle cx="248.7" cy="194.0" r="4.5" fill="#1f5fa8"/>
+<circle cx="272.5" cy="170.7" r="4.5" fill="#1f5fa8"/>
+<circle cx="306.7" cy="147.3" r="4.5" fill="#1f5fa8"/>
+<circle cx="352.1" cy="229.0" r="4.5" fill="#1f5fa8"/>
+<text x="230.0" y="466" text-anchor="middle">Mean predicted probability (average of 5 OOF repeats per patient)</text>
+<text x="16" y="229.0" text-anchor="middle" transform="rotate(-90 16 229.0)">Observed proportion positive</text>
+<text x="230.0" y="486" text-anchor="middle" fill="#333" font-size="11">Patient-mean probabilities: Brier 0.201, slope 0.89, intercept +0.00</text>
+</svg>

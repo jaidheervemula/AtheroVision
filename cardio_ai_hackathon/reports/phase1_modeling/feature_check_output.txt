@@ -1,0 +1,132 @@
+train_phase1.py | Python 3.13.5 | scikit-learn 1.9.1 | pandas 3.0.6 | numpy 2.5.3
+Dataset: C:\Users\<user>\Desktop\cardio_ai_hackathon\data\raw\extention of Z-Alizadeh sani dataset.xlsx
+SHA-256: 739343245c2ba578b541370217531750d8e936022f928b83e0d91756caa3ff0b
+Validation: RepeatedStratifiedKFold(n_splits=5, n_repeats=5, random_state=42); decision threshold 0.5
+Loaded 303 rows x 59 columns
+
+==============================================================================
+1. TARGETS (positive class = CAD / Stenotic)
+==============================================================================
+Cath: positive=216, negative=87, prevalence=0.713
+LAD : positive=177, negative=126, prevalence=0.584
+LCX : positive=119, negative=184, prevalence=0.393
+RCA : positive=114, negative=189, prevalence=0.376
+
+Rows where Cath disagrees with 'any vessel stenotic': [93]
+  index 93: Cath='Normal', LAD='Stenotic', LCX='Normal', RCA='Normal'
+Primary analysis KEEPS these rows with labels exactly as recorded.
+
+==============================================================================
+2. FEATURES
+==============================================================================
+Excluded columns (7):
+  - 'Cath': target column (excluded from every model)
+  - 'LAD': target column (excluded from every model)
+  - 'LCX': target column (excluded from every model)
+  - 'RCA': target column (excluded from every model)
+  - 'CHF': binary with only 1 patient(s) in one level (< 5); too rare to learn from
+  - 'Exertional CP': constant (one value in all rows)
+  - 'LowTH Ang': binary with only 2 patient(s) in one level (< 5); too rare to learn from
+Features used: 52 (23 numeric, 29 text/categorical)
+Text/categorical features and their levels (encoded inside each fold):
+  'Sex': 'Male':176, 'Fmale':127
+  'DM': '0':213, '1':90
+  'HTN': '1':179, '0':124
+  'Current Smoker': '0':240, '1':63
+  'EX-Smoker': '0':293, '1':10
+  'FH': '0':255, '1':48
+  'Obesity': 'Y':211, 'N':92
+  'CRF': 'N':297, 'Y':6
+  'CVA': 'N':298, 'Y':5
+  'Airway disease': 'N':292, 'Y':11
+  'Thyroid Disease': 'N':296, 'Y':7
+  'DLP': 'N':191, 'Y':112
+  'Edema': '0':291, '1':12
+  'Weak Peripheral Pulse': 'N':298, 'Y':5
+  'Lung rales': 'N':292, 'Y':11
+  'Systolic Murmur': 'N':262, 'Y':41
+  'Diastolic Murmur': 'N':294, 'Y':9
+  'Typical Chest Pain': '1':164, '0':139
+  'Dyspnea': 'N':169, 'Y':134
+  'Atypical': 'N':210, 'Y':93
+  'Nonanginal': 'N':287, 'Y':16
+  'Q Wave': '0':287, '1':16
+  'St Elevation': '0':289, '1':14
+  'St Depression': '0':232, '1':71
+  'Tinversion': '0':213, '1':90
+  'LVH': 'N':283, 'Y':20
+  'Poor R Progression': 'N':294, 'Y':9
+  'BBB': 'N':282, 'LBBB':13, 'RBBB':8
+  'VHD': 'mild':149, 'N':116, 'Moderate':27, 'Severe':11
+NOTE: 'Sex' is used exactly as recorded ('Male' / 'Fmale'). 'Fmale' is most likely a
+      spelling of 'Female', but this is unconfirmed by the documentation; the label
+      is not changed in the data and the issue is recorded in metadata.json.
+NOTE: Function Class (0-3) and Region RWMA (0-4) are treated as ordinal numbers.
+      Their exact definitions are undocumented; see metadata.json known_issues.
+NOTE: 'Obesity' in this file equals BMI >= 25 (i.e. overweight), not BMI >= 30.
+Clinical baseline features (7): ['Age', 'Sex', 'Typical Chest Pain', 'DM', 'HTN', 'DLP', 'Current Smoker']
+Reduced feature set = all features minus ['Weight', 'Length', 'Obesity', 'Neut'] (48 features)
+
+==============================================================================
+FEATURE CHECK (--features-only): encoded columns
+==============================================================================
+57 encoded columns from 52 features
+  num__Age                         scaled number  min= -2.785 max=  2.612
+  num__Weight                      scaled number  min= -2.158 max=  3.858
+  num__Length                      scaled number  min= -2.654 max=  2.500
+  num__BMI                         scaled number  min= -2.232 max=  3.336
+  num__BP                          scaled number  min= -2.092 max=  3.197
+  num__PR                          scaled number  min= -2.826 max=  3.918
+  num__Function Class              scaled number  min= -0.644 max=  2.268
+  num__FBS                         scaled number  min= -1.100 max=  5.401
+  num__CR                          scaled number  min= -2.106 max=  4.337
+  num__TG                          scaled number  min= -1.159 max=  9.199
+  num__LDL                         scaled number  min= -2.452 max=  3.604
+  num__HDL                         scaled number  min= -2.308 max=  6.713
+  num__BUN                         scaled number  min= -1.656 max=  4.967
+  num__ESR                         scaled number  min= -1.160 max=  4.434
+  num__HB                          scaled number  min= -2.646 max=  2.766
+  num__K                           scaled number  min= -2.690 max=  5.179
+  num__Na                          scaled number  min= -3.419 max=  3.947
+  num__WBC                         scaled number  min= -1.603 max=  4.332
+  num__Lymph                       scaled number  min= -2.551 max=  2.772
+  num__Neut                        scaled number  min= -2.769 max=  2.838
+  num__PLT                         scaled number  min= -3.237 max=  8.576
+  num__EF-TTE                      scaled number  min= -3.616 max=  1.433
+  num__Region RWMA                 scaled number  min= -0.549 max=  2.989
+  cat__Sex_Male                    0/1 indicator  min=  0.000 max=  1.000
+  cat__DM_1                        0/1 indicator  min=  0.000 max=  1.000
+  cat__HTN_1                       0/1 indicator  min=  0.000 max=  1.000
+  cat__Current Smoker_1            0/1 indicator  min=  0.000 max=  1.000
+  cat__EX-Smoker_1                 0/1 indicator  min=  0.000 max=  1.000
+  cat__FH_1                        0/1 indicator  min=  0.000 max=  1.000
+  cat__Obesity_Y                   0/1 indicator  min=  0.000 max=  1.000
+  cat__CRF_Y                       0/1 indicator  min=  0.000 max=  1.000
+  cat__CVA_Y                       0/1 indicator  min=  0.000 max=  1.000
+  cat__Airway disease_Y            0/1 indicator  min=  0.000 max=  1.000
+  cat__Thyroid Disease_Y           0/1 indicator  min=  0.000 max=  1.000
+  cat__DLP_Y                       0/1 indicator  min=  0.000 max=  1.000
+  cat__Edema_1                     0/1 indicator  min=  0.000 max=  1.000
+  cat__Weak Peripheral Pulse_Y     0/1 indicator  min=  0.000 max=  1.000
+  cat__Lung rales_Y                0/1 indicator  min=  0.000 max=  1.000
+  cat__Systolic Murmur_Y           0/1 indicator  min=  0.000 max=  1.000
+  cat__Diastolic Murmur_Y          0/1 indicator  min=  0.000 max=  1.000
+  cat__Typical Chest Pain_1        0/1 indicator  min=  0.000 max=  1.000
+  cat__Dyspnea_Y                   0/1 indicator  min=  0.000 max=  1.000
+  cat__Atypical_Y                  0/1 indicator  min=  0.000 max=  1.000
+  cat__Nonanginal_Y                0/1 indicator  min=  0.000 max=  1.000
+  cat__Q Wave_1                    0/1 indicator  min=  0.000 max=  1.000
+  cat__St Elevation_1              0/1 indicator  min=  0.000 max=  1.000
+  cat__St Depression_1             0/1 indicator  min=  0.000 max=  1.000
+  cat__Tinversion_1                0/1 indicator  min=  0.000 max=  1.000
+  cat__LVH_Y                       0/1 indicator  min=  0.000 max=  1.000
+  cat__Poor R Progression_Y        0/1 indicator  min=  0.000 max=  1.000
+  cat__BBB_LBBB                    0/1 indicator  min=  0.000 max=  1.000
+  cat__BBB_N                       0/1 indicator  min=  0.000 max=  1.000
+  cat__BBB_RBBB                    0/1 indicator  min=  0.000 max=  1.000
+  cat__VHD_Moderate                0/1 indicator  min=  0.000 max=  1.000
+  cat__VHD_N                       0/1 indicator  min=  0.000 max=  1.000
+  cat__VHD_Severe                  0/1 indicator  min=  0.000 max=  1.000
+  cat__VHD_mild                    0/1 indicator  min=  0.000 max=  1.000
+Target columns among encoded inputs: none
+Stopped after the feature check: no models trained.

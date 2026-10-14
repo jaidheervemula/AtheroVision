@@ -1,0 +1,37 @@
+test_vessel_models.py | educational prototype, internal CV only
+Python 3.13.5, scikit-learn 1.9.1
+Feature sets: clinical 7, reduced 48; forbidden ['Cath', 'LAD', 'LCX', 'RCA'] absent from both: True
+Rare categorical levels (<15 patients) in the reduced set: 14 (none in the clinical set: True)
+
+=== LCX: 1 = 'Stenotic' (n=119), 0 = 'Normal' (n=184) ===
+  Baseline reproduction: OOF diff 9.7e-17, fold AUC diff 1.1e-16 -> REPRODUCED
+  baseline                 ROC-AUC 0.739 | PR-AUC 0.595 | Brier 0.202 | sens 0.52 spec 0.80
+  lr_balanced_clinical     ROC-AUC 0.740 | PR-AUC 0.597 | Brier 0.207 | sens 0.72 spec 0.66
+  lr_strongreg_clinical    ROC-AUC 0.740 | PR-AUC 0.604 | Brier 0.201 | sens 0.44 spec 0.82
+  lr_strongreg_reduced     ROC-AUC 0.709 | PR-AUC 0.585 | Brier 0.212 | sens 0.46 spec 0.80
+  rf_conservative_reduced  ROC-AUC 0.733 | PR-AUC 0.594 | Brier 0.209 | sens 0.27 spec 0.90
+
+=== RCA: 1 = 'Stenotic' (n=114), 0 = 'Normal' (n=189) ===
+  Baseline reproduction: OOF diff 9.7e-17, fold AUC diff 1.1e-16 -> REPRODUCED
+  baseline                 ROC-AUC 0.737 | PR-AUC 0.600 | Brier 0.197 | sens 0.43 spec 0.81
+  lr_balanced_clinical     ROC-AUC 0.737 | PR-AUC 0.600 | Brier 0.206 | sens 0.67 spec 0.63
+  lr_strongreg_clinical    ROC-AUC 0.737 | PR-AUC 0.591 | Brier 0.200 | sens 0.36 spec 0.87
+  lr_strongreg_reduced     ROC-AUC 0.727 | PR-AUC 0.593 | Brier 0.202 | sens 0.44 spec 0.81
+  rf_conservative_reduced  ROC-AUC 0.719 | PR-AUC 0.583 | Brier 0.208 | sens 0.23 spec 0.92
+
+=== SUMMARY: ROC-AUC difference vs baseline (95% bootstrap CI) ===
+  LCX lr_balanced_clinical     +0.000 (-0.001 to +0.002) -> no clear difference
+  LCX lr_strongreg_clinical    +0.000 (-0.010 to +0.012) -> no clear difference
+  LCX lr_strongreg_reduced     -0.030 (-0.072 to +0.008) -> no clear difference
+  LCX rf_conservative_reduced  -0.006 (-0.045 to +0.030) -> no clear difference
+  RCA lr_balanced_clinical     +0.001 (-0.002 to +0.003) -> no clear difference
+  RCA lr_strongreg_clinical    +0.000 (-0.013 to +0.014) -> no clear difference
+  RCA lr_strongreg_reduced     -0.010 (-0.056 to +0.037) -> no clear difference
+  RCA rf_conservative_reduced  -0.018 (-0.055 to +0.024) -> no clear difference
+
+Baseline reproduced: True
+Warnings: none
+Protected files checked: 80; changed: none
+Outputs: C:\Users\<user>\Desktop\cardio_ai_hackathon\reports\vessel_model_experiment
+Total time 87.1s
+VESSEL MODEL EXPERIMENT COMPLETE (no candidate adopted; deployed models unchanged)

@@ -1,0 +1,5 @@
+# Added on top of the ML environment (scikit-learn 1.9.1, pandas 3.0.6, numpy 2.5.3, openpyxl).
+fastapi==0.143.0
+uvicorn==0.54.0
+# Only needed for `python -m unittest api.test_api` (FastAPI's test client).
+httpx2==2.13.1

@@ -1,0 +1,23 @@
+final_ml_evaluation.py | educational prototype, internal CV only
+Protocol reused from train_phase1.py: RepeatedStratifiedKFold(n_splits=5, n_repeats=5, random_state=42); threshold 0.5
+Row 93 as recorded (unchanged): {'Cath': 'Normal', 'LAD': 'Stenotic', 'LCX': 'Normal', 'RCA': 'Normal'}
+
+=== Cath: logreg_reduced (LogisticRegression), 48 inputs ===
+  Reproduction check: max |regenerated mean OOF - saved| = 1.11e-16; max |fold AUC - saved| = 1.11e-16; labels match = True
+  Repeat-averaged: ROC-AUC 0.920, Brier 0.103, slope 0.80 | row-93-excluded refit ROC-AUC 0.928
+
+=== LAD: rf_reduced (RandomForestClassifier), 48 inputs ===
+  Reproduction check: max |regenerated mean OOF - saved| = 2.22e-16; max |fold AUC - saved| = 1.11e-16; labels match = True
+  Repeat-averaged: ROC-AUC 0.847, Brier 0.164, slope 1.82 | row-93-excluded refit ROC-AUC 0.847
+
+=== LCX: logreg_clinical (LogisticRegression), 7 inputs ===
+  Reproduction check: max |regenerated mean OOF - saved| = 9.02e-17; max |fold AUC - saved| = 0.00e+00; labels match = True
+  Repeat-averaged: ROC-AUC 0.739, Brier 0.202, slope 0.87 | row-93-excluded refit ROC-AUC 0.748
+
+=== RCA: logreg_clinical (LogisticRegression), 7 inputs ===
+  Reproduction check: max |regenerated mean OOF - saved| = 8.33e-17; max |fold AUC - saved| = 0.00e+00; labels match = True
+  Repeat-averaged: ROC-AUC 0.737, Brier 0.197, slope 0.94 | row-93-excluded refit ROC-AUC 0.738
+
+Protected files checked: 31; changed: none
+Total time 248.2s. Outputs in C:\Users\<user>\Desktop\cardio_ai_hackathon\reports\final_ml_evaluation
+FINAL ML EVALUATION COMPLETE

@@ -1,0 +1,113 @@
+build_model_selection.py | Python 3.13.5 | scikit-learn 1.9.1 | pandas 3.0.6 | numpy 2.5.3
+
+=== 1. INPUT FILES (read-only) ===
+  [PASS] exists: data\raw\extention of Z-Alizadeh sani dataset.xlsx
+  [PASS] exists: models\phase1_candidates\metadata.json
+  [PASS] exists: reports\phase1_modeling\cv_summary.csv
+  [PASS] exists: reports\phase1_modeling\cv_fold_metrics.csv
+  [PASS] exists: reports\phase1_modeling\oof_predictions.csv
+  [PASS] exists: reports\phase1_modeling\sensitivity_inconsistent_row.csv
+  [PASS] exists: models\phase1_candidates\Cath__logreg_reduced.joblib
+  [PASS] exists: models\phase1_candidates\LAD__rf_reduced.joblib
+  [PASS] exists: models\phase1_candidates\LCX__logreg_clinical.joblib
+  [PASS] exists: models\phase1_candidates\RCA__logreg_clinical.joblib
+
+=== 2. ENVIRONMENT vs TRAINING ===
+  [PASS] scikit-learn version matches training -- now 1.9.1, trained 1.9.1
+  [PASS] dataset hash matches training metadata
+
+=== 3. TARGET LABELS (raw Excel values -> 1/0 used in training) ===
+  [PASS] Cath raw labels are exactly ['CAD', 'Normal'] -- found ['CAD', 'Normal']
+      Cath: 1 = 'CAD' (n=216), 0 = 'Normal' (n=87)
+  [PASS] LAD raw labels are exactly ['Normal', 'Stenotic'] -- found ['Normal', 'Stenotic']
+      LAD: 1 = 'Stenotic' (n=177), 0 = 'Normal' (n=126)
+  [PASS] LCX raw labels are exactly ['Normal', 'Stenotic'] -- found ['Normal', 'Stenotic']
+      LCX: 1 = 'Stenotic' (n=119), 0 = 'Normal' (n=184)
+  [PASS] RCA raw labels are exactly ['Normal', 'Stenotic'] -- found ['Normal', 'Stenotic']
+      RCA: 1 = 'Stenotic' (n=114), 0 = 'Normal' (n=189)
+  [PASS] inconsistent target row documented in metadata -- rows [93]
+      row 93 as recorded (unchanged): {'Cath': 'Normal', 'LAD': 'Stenotic', 'LCX': 'Normal', 'RCA': 'Normal'}
+
+=== 4. SELECTED PIPELINES ===
+
+-- Cath__logreg_reduced  (models\phase1_candidates\Cath__logreg_reduced.joblib, 12,426 bytes)
+  [PASS] loads without warnings
+  [PASS] is a scikit-learn Pipeline -- Pipeline
+  [PASS] steps are preprocess -> model -- ['preprocess', 'model']
+  [PASS] classes_ == [0, 1] (column 1 = positive) -- [0, 1]
+  [PASS] input feature list matches metadata.json -- 48 features
+  [PASS] no target column among inputs
+  [PASS] predict_proba gives (n, 2), values in [0,1], rows sum to 1
+  [PASS] column 1 rises with the positive label (orientation check) -- in-sample AUC 0.977 -- NOT a performance estimate
+      CV ROC-AUC 0.922 ± 0.034 (25 folds) | in-sample probability range 0.001-1.000
+  [PASS] missing input column raises an error
+  [NOTE] invalid category in 'Sex' is NOT rejected: silently encoded as 'none of the known values' (probability 0.827 -> 0.710). The dashboard must validate categories before calling the pipeline.
+  [NOTE] missing value in 'Age' is NOT rejected: silently replaced by the training median (probability 0.827 -> 0.883). The dashboard must reject or clearly flag missing values.
+
+-- LAD__rf_reduced  (models\phase1_candidates\LAD__rf_reduced.joblib, 1,823,835 bytes)
+  [PASS] loads without warnings
+  [PASS] is a scikit-learn Pipeline -- Pipeline
+  [PASS] steps are preprocess -> model -- ['preprocess', 'model']
+  [PASS] classes_ == [0, 1] (column 1 = positive) -- [0, 1]
+  [PASS] input feature list matches metadata.json -- 48 features
+  [PASS] no target column among inputs
+  [PASS] predict_proba gives (n, 2), values in [0,1], rows sum to 1
+  [PASS] column 1 rises with the positive label (orientation check) -- in-sample AUC 0.999 -- NOT a performance estimate
+      CV ROC-AUC 0.853 ± 0.046 (25 folds) | in-sample probability range 0.054-0.958
+  [PASS] missing input column raises an error
+  [NOTE] invalid category in 'Sex' is NOT rejected: silently encoded as 'none of the known values' (probability 0.599 -> 0.575). The dashboard must validate categories before calling the pipeline.
+  [NOTE] missing value in 'Age' is NOT rejected: silently replaced by the training median (probability 0.599 -> 0.620). The dashboard must reject or clearly flag missing values.
+
+-- LCX__logreg_clinical  (models\phase1_candidates\LCX__logreg_clinical.joblib, 5,530 bytes)
+  [PASS] loads without warnings
+  [PASS] is a scikit-learn Pipeline -- Pipeline
+  [PASS] steps are preprocess -> model -- ['preprocess', 'model']
+  [PASS] classes_ == [0, 1] (column 1 = positive) -- [0, 1]
+  [PASS] input feature list matches metadata.json -- 7 features
+  [PASS] no target column among inputs
+  [PASS] predict_proba gives (n, 2), values in [0,1], rows sum to 1
+  [PASS] column 1 rises with the positive label (orientation check) -- in-sample AUC 0.770 -- NOT a performance estimate
+      CV ROC-AUC 0.743 ± 0.078 (25 folds) | in-sample probability range 0.037-0.878
+  [PASS] missing input column raises an error
+  [NOTE] invalid category in 'Sex' is NOT rejected: silently encoded as 'none of the known values' (probability 0.253 -> 0.160). The dashboard must validate categories before calling the pipeline.
+  [NOTE] missing value in 'Age' is NOT rejected: silently replaced by the training median (probability 0.253 -> 0.318). The dashboard must reject or clearly flag missing values.
+
+-- RCA__logreg_clinical  (models\phase1_candidates\RCA__logreg_clinical.joblib, 5,530 bytes)
+  [PASS] loads without warnings
+  [PASS] is a scikit-learn Pipeline -- Pipeline
+  [PASS] steps are preprocess -> model -- ['preprocess', 'model']
+  [PASS] classes_ == [0, 1] (column 1 = positive) -- [0, 1]
+  [PASS] input feature list matches metadata.json -- 7 features
+  [PASS] no target column among inputs
+  [PASS] predict_proba gives (n, 2), values in [0,1], rows sum to 1
+  [PASS] column 1 rises with the positive label (orientation check) -- in-sample AUC 0.762 -- NOT a performance estimate
+      CV ROC-AUC 0.740 ± 0.047 (25 folds) | in-sample probability range 0.040-0.885
+  [PASS] missing input column raises an error
+  [NOTE] invalid category in 'Sex' is NOT rejected: silently encoded as 'none of the known values' (probability 0.253 -> 0.133). The dashboard must validate categories before calling the pipeline.
+  [NOTE] missing value in 'Age' is NOT rejected: silently replaced by the training median (probability 0.253 -> 0.294). The dashboard must reject or clearly flag missing values.
+
+=== 5. SELECTION RULE CHECK ===
+Rule: simplest of ['logreg_clinical', 'logreg_reduced', 'logreg_all', 'rf_reduced', 'rf_all'] that is not clearly worse than the top-AUC
+candidate (clearly worse = mean paired AUC deficit >= 0.01 AND worse in
+>= 18/25 folds). Thresholds set after results were seen.
+  [PASS] Cath: selection 'logreg_reduced' agrees with rule -- top AUC: rf_reduced
+  [PASS] LAD: selection 'rf_reduced' agrees with rule -- top AUC: rf_reduced
+  [PASS] LCX: selection 'logreg_clinical' agrees with rule -- top AUC: logreg_clinical
+  [PASS] RCA: selection 'logreg_clinical' agrees with rule -- top AUC: logreg_clinical
+
+=== 6. CROSS-TASK COHERENCE (out-of-fold, threshold 0.5) ===
+  Patients with a vessel predicted stenotic but CAD predicted negative: 10
+  Patients with CAD predicted positive but no vessel predicted stenotic: 18
+  (The four models are independent, so such disagreements are possible and must be
+   shown honestly in the dashboard rather than hidden.)
+
+=== 7. READ-ONLY CHECK ===
+  [PASS] no input file or artifact was modified
+
+Wrote:
+  config\model_selection.json
+  reports\model_selection\model_selection_report.md
+  reports\model_selection\artifact_verification.txt
+
+FAILED CHECKS: none
+SELECTIONS NEEDING REVIEW: none

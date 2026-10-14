@@ -1,0 +1,536 @@
+{
+ "_source": "cardio_ai_hackathon/config/model_selection.json -> input_schema (copied for contract tests; do not edit by hand)",
+ "input_schema": {
+  "Age": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 30,
+   "training_max": 86,
+   "used_by": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+   ]
+  },
+  "Sex": {
+   "kind": "categorical",
+   "allowed_values": [
+    "Fmale",
+    "Male"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+   ]
+  },
+  "BMI": {
+   "kind": "numeric",
+   "dtype": "float",
+   "training_min": 18.115412710007302,
+   "training_max": 40.90065778377467,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "DM": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+   ]
+  },
+  "HTN": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+   ]
+  },
+  "Current Smoker": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+   ]
+  },
+  "EX-Smoker": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "FH": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "CRF": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "CVA": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Airway disease": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Thyroid Disease": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "DLP": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+   ]
+  },
+  "BP": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 90,
+   "training_max": 190,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "PR": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 50,
+   "training_max": 110,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Edema": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Weak Peripheral Pulse": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Lung rales": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Systolic Murmur": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Diastolic Murmur": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Typical Chest Pain": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+   ]
+  },
+  "Dyspnea": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Function Class": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 0,
+   "training_max": 3,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Atypical": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Nonanginal": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Q Wave": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "St Elevation": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "St Depression": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Tinversion": {
+   "kind": "categorical",
+   "allowed_values": [
+    0,
+    1
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "LVH": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Poor R Progression": {
+   "kind": "categorical",
+   "allowed_values": [
+    "N",
+    "Y"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "BBB": {
+   "kind": "categorical",
+   "allowed_values": [
+    "LBBB",
+    "N",
+    "RBBB"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "FBS": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 62,
+   "training_max": 400,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "CR": {
+   "kind": "numeric",
+   "dtype": "float",
+   "training_min": 0.5,
+   "training_max": 2.2,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "TG": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 37,
+   "training_max": 1050,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "LDL": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 18,
+   "training_max": 232,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "HDL": {
+   "kind": "numeric",
+   "dtype": "float",
+   "training_min": 15.9,
+   "training_max": 111.0,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "BUN": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 6,
+   "training_max": 52,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "ESR": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 1,
+   "training_max": 90,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "HB": {
+   "kind": "numeric",
+   "dtype": "float",
+   "training_min": 8.9,
+   "training_max": 17.6,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "K": {
+   "kind": "numeric",
+   "dtype": "float",
+   "training_min": 3.0,
+   "training_max": 6.6,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Na": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 128,
+   "training_max": 156,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "WBC": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 3700,
+   "training_max": 18000,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Lymph": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 7,
+   "training_max": 60,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "PLT": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 25,
+   "training_max": 742,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "EF-TTE": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 15,
+   "training_max": 60,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "Region RWMA": {
+   "kind": "numeric",
+   "dtype": "integer",
+   "training_min": 0,
+   "training_max": 4,
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  },
+  "VHD": {
+   "kind": "categorical",
+   "allowed_values": [
+    "Moderate",
+    "N",
+    "Severe",
+    "mild"
+   ],
+   "used_by": [
+    "Cath",
+    "LAD"
+   ]
+  }
+ },
+ "targets": [
+  "Cath",
+  "LAD",
+  "LCX",
+  "RCA"
+ ]
+}

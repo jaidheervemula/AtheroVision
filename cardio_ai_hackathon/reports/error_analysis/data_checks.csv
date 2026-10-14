@@ -1,0 +1,34 @@
+check,result,detail
+dataset hash matches config,PASS,
+dataset has 303 rows with index 0..302,PASS,"(303, 59)"
+no exact duplicate rows,PASS,0 duplicates
+no missing values,PASS,0 missing
+OOF file has expected columns,PASS,"['row_index', 'task', 'model', 'repeat', 'y_true', 'oof_proba']"
+"Cath: raw labels are exactly {CAD, Normal}",PASS,
+Cath: OOF rows for selected model logreg_reduced,PASS,1515 rows
+"Cath: probabilities complete and within [0, 1]",PASS,
+Cath: y_true constant per patient and equal to dataset labels,PASS,
+Cath: every patient predicted exactly once per repeat (regenerated splits),PASS,
+Cath: no independently saved fold IDs to compare (regenerated only),PASS,
+"LAD: raw labels are exactly {Stenotic, Normal}",PASS,
+LAD: OOF rows for selected model rf_reduced,PASS,1515 rows
+"LAD: probabilities complete and within [0, 1]",PASS,
+LAD: y_true constant per patient and equal to dataset labels,PASS,
+LAD: every patient predicted exactly once per repeat (regenerated splits),PASS,
+LAD: regenerated fold IDs equal independently saved fold IDs,PASS,
+LAD: saved OOF probabilities agree across reports,PASS,max diff 4.4e-16
+"LCX: raw labels are exactly {Stenotic, Normal}",PASS,
+LCX: OOF rows for selected model logreg_clinical,PASS,1515 rows
+"LCX: probabilities complete and within [0, 1]",PASS,
+LCX: y_true constant per patient and equal to dataset labels,PASS,
+LCX: every patient predicted exactly once per repeat (regenerated splits),PASS,
+LCX: regenerated fold IDs equal independently saved fold IDs,PASS,
+LCX: saved OOF probabilities agree across reports,PASS,max diff 0.0e+00
+"RCA: raw labels are exactly {Stenotic, Normal}",PASS,
+RCA: OOF rows for selected model logreg_clinical,PASS,1515 rows
+"RCA: probabilities complete and within [0, 1]",PASS,
+RCA: y_true constant per patient and equal to dataset labels,PASS,
+RCA: every patient predicted exactly once per repeat (regenerated splits),PASS,
+RCA: regenerated fold IDs equal independently saved fold IDs,PASS,
+RCA: saved OOF probabilities agree across reports,PASS,max diff 0.0e+00
+inconsistent target rows identified (kept unchanged),PASS,rows [93]

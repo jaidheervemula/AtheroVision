@@ -1,0 +1,2 @@
+approach,outer_fold,category,message
+sigmoid,15,UserWarning,Found unknown categories in columns [7] during transform. These unknown categories will be encoded as all zeros

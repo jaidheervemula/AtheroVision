@@ -1,0 +1,76 @@
+
+from pathlib import Path
+import pandas as pd
+
+FILE = Path("data/raw/extention of Z-Alizadeh sani dataset.xlsx")
+TARGETS = ["Cath", "LAD", "LCX", "RCA"]
+
+df = pd.read_excel(FILE)
+
+print("=" * 60)
+print("1. DATA INTEGRITY")
+print("=" * 60)
+print("Shape:", df.shape)
+print("Exact duplicate rows:", df.duplicated().sum())
+print("Columns with missing values:", df.isna().sum()[df.isna().sum() > 0])
+print("Constant columns:", [
+    c for c in df.columns if df[c].nunique(dropna=False) <= 1
+])
+
+print("\n" + "=" * 60)
+print("2. CATEGORICAL VALUE AUDIT")
+print("=" * 60)
+
+for col in df.select_dtypes(include=["object", "str"]).columns:
+    values = df[col].value_counts(dropna=False)
+    print(f"\n{col}:")
+    print(values.to_string())
+
+    # Report whitespace issues without changing the source data.
+    whitespace = df[col].dropna().astype(str).str.strip().ne(
+        df[col].dropna().astype(str)
+    ).sum()
+    if whitespace:
+        print("Values with leading/trailing whitespace:", whitespace)
+
+print("\n" + "=" * 60)
+print("3. TARGET DISTRIBUTIONS")
+print("=" * 60)
+
+for col in TARGETS:
+    print(f"\n{col}:")
+    print(df[col].value_counts(dropna=False).to_string())
+
+print("\n" + "=" * 60)
+print("4. CAD VS VESSEL-LABEL CONSISTENCY")
+print("=" * 60)
+
+# Standardize text only in temporary audit copies.
+# The original dataframe is never modified.
+labels = df[TARGETS].apply(
+    lambda col: col.astype("string").str.strip().str.casefold()
+)
+
+for col in TARGETS:
+    print(f"\n{col} normalized values:")
+    print(labels[col].value_counts(dropna=False).to_string())
+
+vessels = ["LAD", "LCX", "RCA"]
+vessel_positive = labels[vessels].eq("stenotic").any(axis=1)
+cad_positive = labels["Cath"].eq("cad")
+
+print("\nCAD positive, at least one vessel stenotic:",
+      int((cad_positive & vessel_positive).sum()))
+print("CAD positive, all three vessels normal:",
+      int((cad_positive & ~vessel_positive).sum()))
+print("CAD normal, at least one vessel stenotic:",
+      int((~cad_positive & vessel_positive).sum()))
+print("Rows with unrecognized target labels:",
+      int((~labels["Cath"].isin(["cad", "normal"])).sum()
+          + sum((~labels[c].isin(["stenotic", "normal"])).sum()
+                for c in vessels)))
+
+print("\nJoint target patterns:")
+print(df[TARGETS].value_counts(dropna=False).to_string())
+
+print("\nAudit complete. No data has been modified or saved.")

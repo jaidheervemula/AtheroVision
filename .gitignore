@@ -1,0 +1,16 @@
+# Local environments and generated files (recreated by start.bat / npm install)
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+dist/
+# Local environment settings (copy frontend/.env.example to frontend/.env)
+.env
+.env.local
+!.env.example
+!.env.demo
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

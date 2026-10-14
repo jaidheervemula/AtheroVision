@@ -1,0 +1,997 @@
+{
+  "created_utc": "2026-10-10T14:39:50+00:00",
+  "status": "provisional_with_calibrated_lad",
+  "created_by": "scripts/build_model_selection.py",
+  "data_file": "extention of Z-Alizadeh sani dataset.xlsx",
+  "data_sha256": "739343245c2ba578b541370217531750d8e936022f928b83e0d91756caa3ff0b",
+  "training_versions": {
+    "python": "3.13.5",
+    "scikit_learn": "1.9.1",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
+  },
+  "validation": {
+    "type": "RepeatedStratifiedKFold",
+    "n_splits": 5,
+    "n_repeats": 5
+  },
+  "selection_rule": {
+    "simplicity_order": [
+      "logreg_clinical",
+      "logreg_reduced",
+      "logreg_all",
+      "rf_reduced",
+      "rf_all"
+    ],
+    "clearly_worse_auc": 0.01,
+    "clearly_worse_folds": 18,
+    "note": "Thresholds set after Phase 1 results were available."
+  },
+  "tasks": {
+    "Cath": {
+      "model_name": "logreg_reduced",
+      "artifact": "models/phase1_candidates/Cath__logreg_reduced.joblib",
+      "artifact_sha256": "b27f7886cff8b2388a8ae724b378679523c0aa7964347bb9430693df887aeb50",
+      "model_type": "LogisticRegression",
+      "input_features": [
+        "Age",
+        "Sex",
+        "BMI",
+        "DM",
+        "HTN",
+        "Current Smoker",
+        "EX-Smoker",
+        "FH",
+        "CRF",
+        "CVA",
+        "Airway disease",
+        "Thyroid Disease",
+        "DLP",
+        "BP",
+        "PR",
+        "Edema",
+        "Weak Peripheral Pulse",
+        "Lung rales",
+        "Systolic Murmur",
+        "Diastolic Murmur",
+        "Typical Chest Pain",
+        "Dyspnea",
+        "Function Class",
+        "Atypical",
+        "Nonanginal",
+        "Q Wave",
+        "St Elevation",
+        "St Depression",
+        "Tinversion",
+        "LVH",
+        "Poor R Progression",
+        "BBB",
+        "FBS",
+        "CR",
+        "TG",
+        "LDL",
+        "HDL",
+        "BUN",
+        "ESR",
+        "HB",
+        "K",
+        "Na",
+        "WBC",
+        "Lymph",
+        "PLT",
+        "EF-TTE",
+        "Region RWMA",
+        "VHD"
+      ],
+      "n_input_features": 48,
+      "target_column": "Cath",
+      "positive_label": "CAD",
+      "negative_label": "Normal",
+      "probability_column": 1,
+      "decision_threshold": 0.5,
+      "threshold_status": "default 0.5, not tuned",
+      "cv_metrics": {
+        "roc_auc": {
+          "mean": 0.9224,
+          "sd": 0.0341
+        },
+        "pr_auc": {
+          "mean": 0.968,
+          "sd": 0.0147
+        },
+        "brier": {
+          "mean": 0.1031,
+          "sd": 0.0285
+        },
+        "balanced_accuracy": {
+          "mean": 0.8231,
+          "sd": 0.0604
+        },
+        "recall": {
+          "mean": 0.9008,
+          "sd": 0.0536
+        },
+        "specificity": {
+          "mean": 0.7454,
+          "sd": 0.1178
+        },
+        "precision": {
+          "mean": 0.8995,
+          "sd": 0.0411
+        },
+        "f1": {
+          "mean": 0.8988,
+          "sd": 0.0336
+        },
+        "accuracy": {
+          "mean": 0.8561,
+          "sd": 0.0469
+        }
+      },
+      "rationale": "Top mean AUC is rf_reduced, but logreg_reduced is within noise of it and has a lower (better) Brier score. Logistic regression is simpler and its explanations are exact, so it is preferred.",
+      "rule_check": {
+        "top_auc_model": "rf_reduced",
+        "rule_choice": "logreg_reduced",
+        "agrees": true
+      },
+      "alternatives_roc_auc": {
+        "logreg_clinical": 0.906,
+        "logreg_all": 0.9191,
+        "rf_all": 0.9222,
+        "logreg_reduced": 0.9224,
+        "rf_reduced": 0.9275
+      }
+    },
+    "LAD": {
+      "model_name": "rf_reduced_sigmoid",
+      "artifact": "models/deployment/LAD__rf_reduced_sigmoid.joblib",
+      "artifact_sha256": "6a8aed4b1eb9c1e288f24ffc19c1199e7764b71a8707149357dce675e9be31a7",
+      "model_type": "RandomForestClassifier",
+      "input_features": [
+        "Age",
+        "Sex",
+        "BMI",
+        "DM",
+        "HTN",
+        "Current Smoker",
+        "EX-Smoker",
+        "FH",
+        "CRF",
+        "CVA",
+        "Airway disease",
+        "Thyroid Disease",
+        "DLP",
+        "BP",
+        "PR",
+        "Edema",
+        "Weak Peripheral Pulse",
+        "Lung rales",
+        "Systolic Murmur",
+        "Diastolic Murmur",
+        "Typical Chest Pain",
+        "Dyspnea",
+        "Function Class",
+        "Atypical",
+        "Nonanginal",
+        "Q Wave",
+        "St Elevation",
+        "St Depression",
+        "Tinversion",
+        "LVH",
+        "Poor R Progression",
+        "BBB",
+        "FBS",
+        "CR",
+        "TG",
+        "LDL",
+        "HDL",
+        "BUN",
+        "ESR",
+        "HB",
+        "K",
+        "Na",
+        "WBC",
+        "Lymph",
+        "PLT",
+        "EF-TTE",
+        "Region RWMA",
+        "VHD"
+      ],
+      "n_input_features": 48,
+      "target_column": "LAD",
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "probability_column": 1,
+      "decision_threshold": 0.5,
+      "threshold_status": "default 0.5, not tuned",
+      "cv_metrics": {
+        "roc_auc": {
+          "mean": 0.8526,
+          "sd": 0.0465
+        },
+        "pr_auc": {
+          "mean": 0.8842,
+          "sd": 0.0433
+        },
+        "brier": {
+          "mean": 0.1639,
+          "sd": 0.0147
+        },
+        "balanced_accuracy": {
+          "mean": 0.7646,
+          "sd": 0.0505
+        },
+        "recall": {
+          "mean": 0.8862,
+          "sd": 0.0573
+        },
+        "specificity": {
+          "mean": 0.6431,
+          "sd": 0.1086
+        },
+        "precision": {
+          "mean": 0.7807,
+          "sd": 0.0496
+        },
+        "f1": {
+          "mean": 0.8281,
+          "sd": 0.034
+        },
+        "accuracy": {
+          "mean": 0.7849,
+          "sd": 0.0443
+        }
+      },
+      "rationale": "rf_reduced has the highest mean AUC and beats logistic regression on most folds, which suggests real non-linear signal, so the more complex model is justified for this task.",
+      "rule_check": {
+        "top_auc_model": "rf_reduced",
+        "rule_choice": "rf_reduced",
+        "agrees": true
+      },
+      "alternatives_roc_auc": {
+        "logreg_clinical": 0.7961,
+        "logreg_all": 0.8198,
+        "rf_all": 0.8505,
+        "logreg_reduced": 0.8231,
+        "rf_reduced": 0.8526
+      },
+      "baseline_artifact": "models/phase1_candidates/LAD__rf_reduced.joblib",
+      "baseline_artifact_sha256": "04ee2c01869a50163ec3ae14b140915ddf6ccb321cd1a524f7709be630e042b9",
+      "baseline_model_name": "rf_reduced",
+      "baseline_model_type": "RandomForestClassifier",
+      "calibration": {
+        "class": "CalibratedClassifierCV",
+        "method": "sigmoid",
+        "ensemble": false,
+        "inner_cv": {
+          "class": "StratifiedKFold",
+          "n_splits": 5,
+          "shuffle": true,
+          "random_state": 42
+        },
+        "deployment_fit": "refit on all 303 rows; not a performance evaluation",
+        "oof_metrics": {
+          "evaluation_type": "repeat-averaged outer-CV OOF estimate; internal only",
+          "roc_auc": 0.845,
+          "brier": 0.154,
+          "log_loss": 0.476,
+          "calibration_slope": 1.001,
+          "calibration_intercept": -0.002,
+          "sensitivity_at_0_5": 0.862,
+          "specificity_at_0_5": 0.675,
+          "precision_at_0_5": 0.788,
+          "f1_at_0_5": 0.824,
+          "accuracy_at_0_5": 0.784,
+          "note": "Rounded values copied from reports/lad_calibration. These are cross-validation estimates, not scores on the final all-data deployment artifact. No external or clinical validation. AUC is essentially unchanged; calibration and Brier/log-loss improved, with sensitivity lower and specificity higher at threshold 0.5."
+        },
+        "calibration_report": "reports/lad_calibration/calibration_report.md"
+      }
+    },
+    "LCX": {
+      "model_name": "logreg_clinical",
+      "artifact": "models/phase1_candidates/LCX__logreg_clinical.joblib",
+      "artifact_sha256": "44d4a2b34f97e18c69d82ab522e02c211235b75a9b62cdb1cca61330877e5fbf",
+      "model_type": "LogisticRegression",
+      "input_features": [
+        "Age",
+        "Sex",
+        "Typical Chest Pain",
+        "DM",
+        "HTN",
+        "DLP",
+        "Current Smoker"
+      ],
+      "n_input_features": 7,
+      "target_column": "LCX",
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "probability_column": 1,
+      "decision_threshold": 0.5,
+      "threshold_status": "default 0.5, not tuned",
+      "cv_metrics": {
+        "roc_auc": {
+          "mean": 0.7429,
+          "sd": 0.0779
+        },
+        "pr_auc": {
+          "mean": 0.6319,
+          "sd": 0.1068
+        },
+        "brier": {
+          "mean": 0.2016,
+          "sd": 0.0283
+        },
+        "balanced_accuracy": {
+          "mean": 0.6595,
+          "sd": 0.0795
+        },
+        "recall": {
+          "mean": 0.5223,
+          "sd": 0.1084
+        },
+        "specificity": {
+          "mean": 0.7967,
+          "sd": 0.0736
+        },
+        "precision": {
+          "mean": 0.6268,
+          "sd": 0.1158
+        },
+        "f1": {
+          "mean": 0.5675,
+          "sd": 0.1059
+        },
+        "accuracy": {
+          "mean": 0.689,
+          "sd": 0.0754
+        }
+      },
+      "rationale": "logreg_clinical (7 inputs) has the highest mean AUC; the 52-feature logistic regression does worse, consistent with overfitting on this weakest task.",
+      "rule_check": {
+        "top_auc_model": "logreg_clinical",
+        "rule_choice": "logreg_clinical",
+        "agrees": true
+      },
+      "alternatives_roc_auc": {
+        "logreg_clinical": 0.7429,
+        "logreg_all": 0.6845,
+        "rf_all": 0.7357,
+        "logreg_reduced": 0.6929,
+        "rf_reduced": 0.7312
+      }
+    },
+    "RCA": {
+      "model_name": "logreg_clinical",
+      "artifact": "models/phase1_candidates/RCA__logreg_clinical.joblib",
+      "artifact_sha256": "dfa6626bc9048365710cfc5902e3162ff055a9c8f9cae2b013e34fec03ed2242",
+      "model_type": "LogisticRegression",
+      "input_features": [
+        "Age",
+        "Sex",
+        "Typical Chest Pain",
+        "DM",
+        "HTN",
+        "DLP",
+        "Current Smoker"
+      ],
+      "n_input_features": 7,
+      "target_column": "RCA",
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "probability_column": 1,
+      "decision_threshold": 0.5,
+      "threshold_status": "default 0.5, not tuned",
+      "cv_metrics": {
+        "roc_auc": {
+          "mean": 0.7404,
+          "sd": 0.0466
+        },
+        "pr_auc": {
+          "mean": 0.6224,
+          "sd": 0.0558
+        },
+        "brier": {
+          "mean": 0.1974,
+          "sd": 0.0161
+        },
+        "balanced_accuracy": {
+          "mean": 0.6215,
+          "sd": 0.045
+        },
+        "recall": {
+          "mean": 0.4313,
+          "sd": 0.0926
+        },
+        "specificity": {
+          "mean": 0.8117,
+          "sd": 0.0691
+        },
+        "precision": {
+          "mean": 0.5881,
+          "sd": 0.0844
+        },
+        "f1": {
+          "mean": 0.491,
+          "sd": 0.0757
+        },
+        "accuracy": {
+          "mean": 0.6686,
+          "sd": 0.0424
+        }
+      },
+      "rationale": "logreg_clinical (7 inputs) has the highest mean AUC and the lowest Brier score; the larger logistic regressions do not improve on it.",
+      "rule_check": {
+        "top_auc_model": "logreg_clinical",
+        "rule_choice": "logreg_clinical",
+        "agrees": true
+      },
+      "alternatives_roc_auc": {
+        "logreg_clinical": 0.7404,
+        "logreg_all": 0.7182,
+        "rf_all": 0.7192,
+        "logreg_reduced": 0.7256,
+        "rf_reduced": 0.7094
+      }
+    }
+  },
+  "revisions": [
+    {
+      "date": "2026-10-10",
+      "task": "RCA",
+      "from": "logreg_reduced",
+      "to": "logreg_clinical",
+      "reason": "Selection-rule review: logreg_clinical has higher mean CV ROC-AUC (about 0.740 vs 0.726) and logreg_reduced had a worse Brier score in 19/25 paired folds. Decided after Phase 1 results were seen."
+    }
+  ],
+  "input_schema": {
+    "Age": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 30,
+      "training_max": 86,
+      "used_by": [
+        "Cath",
+        "LAD",
+        "LCX",
+        "RCA"
+      ]
+    },
+    "Sex": {
+      "kind": "categorical",
+      "allowed_values": [
+        "Fmale",
+        "Male"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD",
+        "LCX",
+        "RCA"
+      ]
+    },
+    "BMI": {
+      "kind": "numeric",
+      "dtype": "float",
+      "training_min": 18.115412710007302,
+      "training_max": 40.90065778377467,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "DM": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD",
+        "LCX",
+        "RCA"
+      ]
+    },
+    "HTN": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD",
+        "LCX",
+        "RCA"
+      ]
+    },
+    "Current Smoker": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD",
+        "LCX",
+        "RCA"
+      ]
+    },
+    "EX-Smoker": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "FH": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "CRF": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "CVA": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Airway disease": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Thyroid Disease": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "DLP": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD",
+        "LCX",
+        "RCA"
+      ]
+    },
+    "BP": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 90,
+      "training_max": 190,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "PR": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 50,
+      "training_max": 110,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Edema": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Weak Peripheral Pulse": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Lung rales": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Systolic Murmur": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Diastolic Murmur": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Typical Chest Pain": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD",
+        "LCX",
+        "RCA"
+      ]
+    },
+    "Dyspnea": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Function Class": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 0,
+      "training_max": 3,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Atypical": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Nonanginal": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Q Wave": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "St Elevation": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "St Depression": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Tinversion": {
+      "kind": "categorical",
+      "allowed_values": [
+        0,
+        1
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "LVH": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Poor R Progression": {
+      "kind": "categorical",
+      "allowed_values": [
+        "N",
+        "Y"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "BBB": {
+      "kind": "categorical",
+      "allowed_values": [
+        "LBBB",
+        "N",
+        "RBBB"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "FBS": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 62,
+      "training_max": 400,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "CR": {
+      "kind": "numeric",
+      "dtype": "float",
+      "training_min": 0.5,
+      "training_max": 2.2,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "TG": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 37,
+      "training_max": 1050,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "LDL": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 18,
+      "training_max": 232,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "HDL": {
+      "kind": "numeric",
+      "dtype": "float",
+      "training_min": 15.9,
+      "training_max": 111.0,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "BUN": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 6,
+      "training_max": 52,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "ESR": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 1,
+      "training_max": 90,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "HB": {
+      "kind": "numeric",
+      "dtype": "float",
+      "training_min": 8.9,
+      "training_max": 17.6,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "K": {
+      "kind": "numeric",
+      "dtype": "float",
+      "training_min": 3.0,
+      "training_max": 6.6,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Na": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 128,
+      "training_max": 156,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "WBC": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 3700,
+      "training_max": 18000,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Lymph": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 7,
+      "training_max": 60,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "PLT": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 25,
+      "training_max": 742,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "EF-TTE": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 15,
+      "training_max": 60,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "Region RWMA": {
+      "kind": "numeric",
+      "dtype": "integer",
+      "training_min": 0,
+      "training_max": 4,
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    },
+    "VHD": {
+      "kind": "categorical",
+      "allowed_values": [
+        "Moderate",
+        "N",
+        "Severe",
+        "mild"
+      ],
+      "used_by": [
+        "Cath",
+        "LAD"
+      ]
+    }
+  },
+  "inconsistent_target_rows": [
+    93
+  ],
+  "limitations": [
+    "Performance comes from repeated stratified 5-fold CV (5 repeats) on 303 patients from one centre. There is no external validation; the models are not clinically validated and are for education/decision-support demonstration only.",
+    "Each selection was made by comparing six candidates on the same folds, so the reported means are likely slightly optimistic.",
+    "Threshold-based metrics use an untuned 0.5 threshold.",
+    "Calibration was only summarised by the Brier score; probabilities are model scores, not validated risk estimates.",
+    "Saved pipelines were refitted on all 303 patients. Predictions for those same patients are in-sample and optimistic; dataset patients shown in a demo should use the stored out-of-fold probabilities or be labelled as training patients.",
+    "Row 93 (Cath=Normal, LAD=Stenotic) contradicts the dataset definition of CAD. It is kept as recorded; removing it changed CV AUC by at most 0.018.",
+    "The four models are independent: out-of-fold, 10 patient(s) had a vessel predicted stenotic while CAD was predicted negative, and 18 had CAD predicted with no vessel predicted.",
+    "The LCX model uses only 7 clinical inputs; ECG, echo and laboratory values do not affect its output.",
+    "The dataset has no lesion location data, so vessel colouring shows whole-vessel model scores, never a lesion position or severity. Region RWMA is not a location.",
+    "Sex level 'Fmale' is used as recorded (presumed 'Female', unconfirmed). 'Obesity' means BMI >= 25. Function Class and Region RWMA definitions are undocumented.",
+    "The pipelines silently accept unknown categories and missing numeric values (encoded as zeros / median-imputed). Inputs must be validated before prediction."
+  ],
+  "disclaimer": "Educational decision-support prototype. Not a diagnostic device and not a substitute for clinical judgement or diagnostic imaging.",
+  "deployment_update": {
+    "updated_utc": "2026-10-10T18:33:04.288438+00:00",
+    "script": "scripts/promote_lad_calibration.py",
+    "python": "3.13.5",
+    "scikit_learn": "1.9.1",
+    "note": "LAD points to a separately saved sigmoid-calibrated RF. Original baseline artifact and baseline cv_metrics are preserved; calibrated OOF estimates are in tasks.LAD.calibration."
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "review": "final ML review before freeze",
+  "created_utc": "2026-10-10T17:47:07+00:00",
+  "mode": "read-only; no training, threshold change or new artifact",
+  "frozen_selection": {
+    "Cath": {
+      "model_name": "logreg_reduced",
+      "model_type": "LogisticRegression",
+      "artifact": "models/phase1_candidates/Cath__logreg_reduced.joblib",
+      "artifact_sha256": "b27f7886cff8b2388a8ae724b378679523c0aa7964347bb9430693df887aeb50",
+      "n_inputs": 48,
+      "positive_label": "CAD",
+      "negative_label": "Normal",
+      "probability_column": 1,
+      "decision_threshold": 0.5
+    },
+    "LAD": {
+      "model_name": "rf_reduced",
+      "model_type": "RandomForestClassifier",
+      "artifact": "models/phase1_candidates/LAD__rf_reduced.joblib",
+      "artifact_sha256": "04ee2c01869a50163ec3ae14b140915ddf6ccb321cd1a524f7709be630e042b9",
+      "n_inputs": 48,
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "probability_column": 1,
+      "decision_threshold": 0.5
+    },
+    "LCX": {
+      "model_name": "logreg_clinical",
+      "model_type": "LogisticRegression",
+      "artifact": "models/phase1_candidates/LCX__logreg_clinical.joblib",
+      "artifact_sha256": "44d4a2b34f97e18c69d82ab522e02c211235b75a9b62cdb1cca61330877e5fbf",
+      "n_inputs": 7,
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "probability_column": 1,
+      "decision_threshold": 0.5
+    },
+    "RCA": {
+      "model_name": "logreg_clinical",
+      "model_type": "LogisticRegression",
+      "artifact": "models/phase1_candidates/RCA__logreg_clinical.joblib",
+      "artifact_sha256": "dfa6626bc9048365710cfc5902e3162ff055a9c8f9cae2b013e34fec03ed2242",
+      "n_inputs": 7,
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "probability_column": 1,
+      "decision_threshold": 0.5
+    }
+  },
+  "evaluation_protocol": {
+    "cv": "RepeatedStratifiedKFold",
+    "n_splits": 5,
+    "n_repeats": 5,
+    "random_state": 42,
+    "stratified_on": "each target separately",
+    "threshold": 0.5,
+    "threshold_tuned": false,
+    "independent_test_set": false,
+    "external_validation": false
+  },
+  "roc_auc": {
+    "Cath": {
+      "repeat_averaged_oof": 0.9204,
+      "bootstrap_95ci": [
+        0.889,
+        0.949
+      ],
+      "fold_mean_25": 0.9224
+    },
+    "LAD": {
+      "repeat_averaged_oof": 0.8468,
+      "bootstrap_95ci": [
+        0.801,
+        0.887
+      ],
+      "fold_mean_25": 0.8526
+    },
+    "LCX": {
+      "repeat_averaged_oof": 0.7395,
+      "bootstrap_95ci": [
+        0.681,
+        0.796
+      ],
+      "fold_mean_25": 0.7429
+    },
+    "RCA": {
+      "repeat_averaged_oof": 0.7369,
+      "bootstrap_95ci": [
+        0.68,
+        0.79
+      ],
+      "fold_mean_25": 0.7404
+    }
+  },
+  "alternatives_not_deployed": {
+    "LAD_sigmoid_calibration": "reports/lad_calibration/ (improved Brier/log loss; ROC-AUC unchanged; not adopted)",
+    "LCX_RCA_candidates": "reports/vessel_model_experiment/ (no clear ROC-AUC improvement; none adopted)"
+  },
+  "environment_reviewed": {
+    "python": "3.13.16",
+    "scikit_learn": "1.9.1",
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "laptop_venv_recorded": "Python 3.13.5, scikit-learn 1.9.1, pandas 3.0.6, numpy 2.5.3"
+  },
+  "check_counts": {
+    "PASS": 22,
+    "WARNING": 14,
+    "NOT VERIFIED": 1,
+    "FAIL": 0
+  },
+  "file_sha256": {
+    "config/model_selection.json": "df9d7586e832b718db95a7cb8fa0cf6188c4e1d7ca8383382e5def50da747f1e",
+    "data/raw/extention of Z-Alizadeh sani dataset.xlsx": "739343245c2ba578b541370217531750d8e936022f928b83e0d91756caa3ff0b",
+    "models/phase1_candidates/metadata.json": "07de517d4988150cc42eed42b6b38d9c0b6989cf4bbb1ef8a70384497e90fef3",
+    "models/phase1_candidates/Cath__logreg_reduced.joblib": "b27f7886cff8b2388a8ae724b378679523c0aa7964347bb9430693df887aeb50",
+    "models/phase1_candidates/LAD__rf_reduced.joblib": "04ee2c01869a50163ec3ae14b140915ddf6ccb321cd1a524f7709be630e042b9",
+    "models/phase1_candidates/LCX__logreg_clinical.joblib": "44d4a2b34f97e18c69d82ab522e02c211235b75a9b62cdb1cca61330877e5fbf",
+    "models/phase1_candidates/RCA__logreg_clinical.joblib": "dfa6626bc9048365710cfc5902e3162ff055a9c8f9cae2b013e34fec03ed2242",
+    "src/cad/inference.py": "f9d3cdc05e7841fdf1545842c8932cb051792a91cad7ff452bbaed8919432313",
+    "src/cad/explain.py": "3b828351d5cd0dd69d0929bb9fa65da2d325bd40adb10bcabac1e7b92a273318",
+    "tests/test_inference.py": "e22fc9aa0f4a8b33b5bfdf71e6f307d44bb048375b4cdd1762271b7987875b9d",
+    "tests/test_explain.py": "c9d22c09d8fdaf7f0fc1585527bf6e3be0a8f54d558ed071feb3364c703d2f1e",
+    "scripts/train_phase1.py": "842f1af2b12f6e5d03ce5d6cae184bdb4edd868ad3e74949134946804fa8ff93",
+    "scripts/final_ml_evaluation.py": "27e707be064f776dc0eb33fb4063a3b0b6a2e4a5986b33f0b2df14e550b65f64",
+    "reports/final_ml_evaluation/oof_per_repeat_selected.csv": "538d232cf151278958a9c92445a708b96cfbd886baa61181b8d3b4ae6106a88c",
+    "reports/final_ml_evaluation/bootstrap_confidence_intervals.csv": "6486e77ed83bee373ab1dccb5925c76f066761f07709024d5038f04ed2b88adf",
+    "reports/lad_calibration/calibration_comparison.csv": "53724fe9d1ef3910dd0787ddc90d0f1f2dafa3d8a171e32a3a8df3e75f125aa6",
+    "reports/vessel_model_experiment/paired_differences_vs_baseline.csv": "d5ebbe869f3ae7f8926b767c1f3b34cbb6827b2cc3349cda332045db356d82f3",
+    "reports/error_analysis/data_checks.csv": "1afbb5839517405928211d1c1d4916766149033dd1857d7a238ceb1a37820e7e"
+  }
+}

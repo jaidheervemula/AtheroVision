@@ -1,0 +1,53 @@
+analyze_oof_errors.py | analysis only, OOF predictions only
+
+=== DATA AND ALIGNMENT CHECKS ===
+  [PASS] dataset hash matches config
+  [PASS] dataset has 303 rows with index 0..302 -- (303, 59)
+  [PASS] no exact duplicate rows -- 0 duplicates
+  [PASS] no missing values -- 0 missing
+  [PASS] OOF file has expected columns -- ['row_index', 'task', 'model', 'repeat', 'y_true', 'oof_proba']
+  [PASS] Cath: raw labels are exactly {CAD, Normal}
+  [PASS] Cath: OOF rows for selected model logreg_reduced -- 1515 rows
+  [PASS] Cath: probabilities complete and within [0, 1]
+  [PASS] Cath: y_true constant per patient and equal to dataset labels
+  [PASS] Cath: every patient predicted exactly once per repeat (regenerated splits)
+  [PASS] Cath: no independently saved fold IDs to compare (regenerated only)
+  [PASS] LAD: raw labels are exactly {Stenotic, Normal}
+  [PASS] LAD: OOF rows for selected model rf_reduced -- 1515 rows
+  [PASS] LAD: probabilities complete and within [0, 1]
+  [PASS] LAD: y_true constant per patient and equal to dataset labels
+  [PASS] LAD: every patient predicted exactly once per repeat (regenerated splits)
+  [PASS] LAD: regenerated fold IDs equal independently saved fold IDs
+  [PASS] LAD: saved OOF probabilities agree across reports -- max diff 4.4e-16
+  [PASS] LCX: raw labels are exactly {Stenotic, Normal}
+  [PASS] LCX: OOF rows for selected model logreg_clinical -- 1515 rows
+  [PASS] LCX: probabilities complete and within [0, 1]
+  [PASS] LCX: y_true constant per patient and equal to dataset labels
+  [PASS] LCX: every patient predicted exactly once per repeat (regenerated splits)
+  [PASS] LCX: regenerated fold IDs equal independently saved fold IDs
+  [PASS] LCX: saved OOF probabilities agree across reports -- max diff 0.0e+00
+  [PASS] RCA: raw labels are exactly {Stenotic, Normal}
+  [PASS] RCA: OOF rows for selected model logreg_clinical -- 1515 rows
+  [PASS] RCA: probabilities complete and within [0, 1]
+  [PASS] RCA: y_true constant per patient and equal to dataset labels
+  [PASS] RCA: every patient predicted exactly once per repeat (regenerated splits)
+  [PASS] RCA: regenerated fold IDs equal independently saved fold IDs
+  [PASS] RCA: saved OOF probabilities agree across reports -- max diff 0.0e+00
+  [PASS] inconsistent target rows identified (kept unchanged) -- rows [93]
+
+=== OVERALL ERRORS AT THE CONFIG THRESHOLD ===
+  Cath: per repeat FP 22.2, FN 21.4 | sens 0.901 spec 0.745 AUC 0.920 | persistent FN 13, persistent FP 14, unstable 35
+  LAD: per repeat FP 45.0, FN 20.2 | sens 0.886 spec 0.643 AUC 0.847 | persistent FN 14, persistent FP 35, unstable 35
+  LCX: per repeat FP 37.4, FN 56.8 | sens 0.523 spec 0.797 AUC 0.739 | persistent FN 42, persistent FP 28, unstable 52
+  RCA: per repeat FP 35.6, FN 64.8 | sens 0.432 spec 0.812 AUC 0.737 | persistent FN 60, persistent FP 26, unstable 31
+
+=== SUBGROUPS (exploratory) ===
+  92 task x subgroup-level rows; 2 flagged as too small
+
+=== COMPLETION SUMMARY ===
+Alignment checks: all passed (33)
+Patients misclassified in all 5 repeats for >= 2 tasks: 70
+Outputs: C:\Users\<user>\Desktop\cardio_ai_hackathon\reports\error_analysis
+Protected files checked: 92; changed: none
+Total time 73.8s
+OOF ERROR ANALYSIS COMPLETE (analysis only; no model fitted; existing files unchanged)

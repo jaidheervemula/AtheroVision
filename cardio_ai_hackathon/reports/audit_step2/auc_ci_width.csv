@@ -1,0 +1,17 @@
+﻿target,evaluation,positive_count_approx,negative_count_approx,assumed_auc,approx_ci_halfwidth
+Cath,20% holdout,43,17,0.7,0.138
+Cath,20% holdout,43,17,0.8,0.113
+Cath,All rows pooled out-of-fold,216,87,0.7,0.061
+Cath,All rows pooled out-of-fold,216,87,0.8,0.05
+LAD,20% holdout,35,25,0.7,0.131
+LAD,20% holdout,35,25,0.8,0.11
+LAD,All rows pooled out-of-fold,177,126,0.7,0.058
+LAD,All rows pooled out-of-fold,177,126,0.8,0.049
+LCX,20% holdout,24,37,0.7,0.139
+LCX,20% holdout,24,37,0.8,0.12
+LCX,All rows pooled out-of-fold,119,184,0.7,0.062
+LCX,All rows pooled out-of-fold,119,184,0.8,0.054
+RCA,20% holdout,23,38,0.7,0.14
+RCA,20% holdout,23,38,0.8,0.122
+RCA,All rows pooled out-of-fold,114,189,0.7,0.063
+RCA,All rows pooled out-of-fold,114,189,0.8,0.054

@@ -1,0 +1,542 @@
+audit_step2.py | pandas 3.0.6 | numpy 2.5.3
+SHA-256 of data file: 739343245c2ba578b541370217531750d8e936022f928b83e0d91756caa3ff0b
+Excel sheets: ['Sheet 1 - Table 1', 'Sheet1'] (audited: 'Sheet 1 - Table 1')
+
+==============================================================================
+SECTION 0 — FILE AND COLUMN OVERVIEW
+==============================================================================
+File: data\raw\extention of Z-Alizadeh sani dataset.xlsx
+Rows: 303
+Columns: 59
+Column names: ['Age', 'Weight', 'Length', 'Sex', 'BMI', 'DM', 'HTN', 'Current Smoker', 'EX-Smoker', 'FH', 'Obesity', 'CRF', 'CVA', 'Airway disease', 'Thyroid Disease', 'CHF', 'DLP', 'BP', 'PR', 'Edema', 'Weak Peripheral Pulse', 'Lung rales', 'Systolic Murmur', 'Diastolic Murmur', 'Typical Chest Pain', 'Dyspnea', 'Function Class', 'Atypical', 'Nonanginal', 'Exertional CP', 'LowTH Ang', 'Q Wave', 'St Elevation', 'St Depression', 'Tinversion', 'LVH', 'Poor R Progression', 'BBB', 'FBS', 'CR', 'TG', 'LDL', 'HDL', 'BUN', 'ESR', 'HB', 'K', 'Na', 'WBC', 'Lymph', 'Neut', 'PLT', 'EF-TTE', 'Region RWMA', 'VHD', 'LAD', 'LCX', 'RCA', 'Cath']
+
+Data types:
+Age                        int64
+Weight                     int64
+Length                     int64
+Sex                          str
+BMI                      float64
+DM                         int64
+HTN                        int64
+Current Smoker             int64
+EX-Smoker                  int64
+FH                         int64
+Obesity                      str
+CRF                          str
+CVA                          str
+Airway disease               str
+Thyroid Disease              str
+CHF                          str
+DLP                          str
+BP                         int64
+PR                         int64
+Edema                      int64
+Weak Peripheral Pulse        str
+Lung rales                   str
+Systolic Murmur              str
+Diastolic Murmur             str
+Typical Chest Pain         int64
+Dyspnea                      str
+Function Class             int64
+Atypical                     str
+Nonanginal                   str
+Exertional CP                str
+LowTH Ang                    str
+Q Wave                     int64
+St Elevation               int64
+St Depression              int64
+Tinversion                 int64
+LVH                          str
+Poor R Progression           str
+BBB                          str
+FBS                        int64
+CR                       float64
+TG                         int64
+LDL                        int64
+HDL                      float64
+BUN                        int64
+ESR                        int64
+HB                       float64
+K                        float64
+Na                         int64
+WBC                        int64
+Lymph                      int64
+Neut                       int64
+PLT                        int64
+EF-TTE                     int64
+Region RWMA                int64
+VHD                          str
+LAD                          str
+LCX                          str
+RCA                          str
+Cath                         str
+
+Missing values by column:
+No missing values.
+
+Exact duplicate rows:
+0
+
+Constant columns:
+['Exertional CP']
+
+Numeric summary:
+                    count         mean          std          min         25%         50%          75%           max
+Age                 303.0    58.897690    10.392278    30.000000    51.00000    58.00000    66.000000     86.000000
+Weight              303.0    73.831683    11.987358    48.000000    65.00000    74.00000    81.000000    120.000000
+Length              303.0   164.716172     9.327661   140.000000   158.00000   165.00000   171.000000    188.000000
+BMI                 303.0    27.248339     4.098865    18.115413    24.51438    26.77551    29.411765     40.900658
+DM                  303.0     0.297030     0.457706     0.000000     0.00000     0.00000     1.000000      1.000000
+HTN                 303.0     0.590759     0.492507     0.000000     0.00000     1.00000     1.000000      1.000000
+Current Smoker      303.0     0.207921     0.406491     0.000000     0.00000     0.00000     0.000000      1.000000
+EX-Smoker           303.0     0.033003     0.178941     0.000000     0.00000     0.00000     0.000000      1.000000
+FH                  303.0     0.158416     0.365734     0.000000     0.00000     0.00000     0.000000      1.000000
+BP                  303.0   129.554455    18.938105    90.000000   120.00000   130.00000   140.000000    190.000000
+PR                  303.0    75.141914     8.911801    50.000000    70.00000    70.00000    80.000000    110.000000
+Edema               303.0     0.039604     0.195350     0.000000     0.00000     0.00000     0.000000      1.000000
+Typical Chest Pain  303.0     0.541254     0.499120     0.000000     0.00000     1.00000     1.000000      1.000000
+Function Class      303.0     0.663366     1.032042     0.000000     0.00000     0.00000     2.000000      3.000000
+Q Wave              303.0     0.052805     0.224015     0.000000     0.00000     0.00000     0.000000      1.000000
+St Elevation        303.0     0.046205     0.210275     0.000000     0.00000     0.00000     0.000000      1.000000
+St Depression       303.0     0.234323     0.424276     0.000000     0.00000     0.00000     0.000000      1.000000
+Tinversion          303.0     0.297030     0.457706     0.000000     0.00000     0.00000     1.000000      1.000000
+FBS                 303.0   119.184818    52.079653    62.000000    88.50000    98.00000   130.000000    400.000000
+CR                  303.0     1.055611     0.264296     0.500000     0.90000     1.00000     1.200000      2.200000
+TG                  303.0   150.343234    97.959451    37.000000    90.00000   122.00000   177.000000   1050.000000
+LDL                 303.0   104.643564    35.396688    18.000000    80.00000   100.00000   122.000000    232.000000
+HDL                 303.0    40.233993    10.559077    15.900000    33.50000    39.00000    45.500000    111.000000
+BUN                 303.0    17.501650     6.956761     6.000000    13.00000    16.00000    20.000000     52.000000
+ESR                 303.0    19.462046    15.936475     1.000000     9.00000    15.00000    26.000000     90.000000
+HB                  303.0    13.153465     1.610452     8.900000    12.20000    13.20000    14.200000     17.600000
+K                   303.0     4.230693     0.458202     3.000000     3.90000     4.20000     4.500000      6.600000
+Na                  303.0   140.996700     3.807885   128.000000   139.00000   141.00000   143.000000    156.000000
+WBC                 303.0  7562.046205  2413.739323  3700.000000  5800.00000  7100.00000  8800.000000  18000.000000
+Lymph               303.0    32.399340     9.972592     7.000000    26.00000    32.00000    39.000000     60.000000
+Neut                303.0    60.148515    10.182493    32.000000    52.50000    60.00000    67.000000     89.000000
+PLT                 303.0   221.488449    60.796199    25.000000   183.50000   210.00000   250.000000    742.000000
+EF-TTE              303.0    47.231023     8.927194    15.000000    45.00000    50.00000    55.000000     60.000000
+Region RWMA         303.0     0.620462     1.132531     0.000000     0.00000     0.00000     1.000000      4.000000
+
+==============================================================================
+SECTION 1 — TARGET LABEL CONSISTENCY
+==============================================================================
+
+Target counts:
+
+Cath:
+Cath
+Positive    216
+Negative     87
+
+LAD:
+LAD
+Positive    177
+Negative    126
+
+LCX:
+LCX
+Negative    184
+Positive    119
+
+RCA:
+RCA
+Negative    189
+Positive    114
+
+Cross-check: Cath CAD versus any stenotic vessel
+Cath CAD AND at least one stenotic vessel: 216
+Cath CAD but all three vessels normal: 0
+Cath Normal but at least one vessel stenotic: 1
+Cath Normal AND all three vessels normal: 86
+
+Rows with disagreement between Cath and vessel labels:
+      Cath       LAD     LCX     RCA
+93  Normal  Stenotic  Normal  Normal
+
+NOTE: This is a consistency check only. It does not establish that Cath must equal the combination of the three vessel labels.
+
+==============================================================================
+SECTION 2 — CATEGORICAL VALUES AND RARE LEVELS
+==============================================================================
+
+Potential spelling / whitespace issues:
+
+Review category spelling differences manually. Do not automatically merge categories without checking the source.
+
+==============================================================================
+SECTION 3 — NUMERIC RANGES AND EXTREME VALUES
+==============================================================================
+
+Age: min=30, median=58.0, max=86, IQR outliers=0
+
+Weight: min=48, median=74.0, max=120, IQR outliers=3
+
+Length: min=140, median=165.0, max=188, IQR outliers=0
+
+BMI: min=18.115412710007302, median=26.775510204081634, max=40.90065778377467, IQR outliers=6
+
+DM: min=0, median=0.0, max=1, IQR outliers=0
+
+HTN: min=0, median=1.0, max=1, IQR outliers=0
+
+Current Smoker: min=0, median=0.0, max=1, IQR outliers=63
+
+EX-Smoker: min=0, median=0.0, max=1, IQR outliers=10
+
+FH: min=0, median=0.0, max=1, IQR outliers=48
+
+BP: min=90, median=130.0, max=190, IQR outliers=9
+
+PR: min=50, median=70.0, max=110, IQR outliers=13
+
+Edema: min=0, median=0.0, max=1, IQR outliers=12
+
+Typical Chest Pain: min=0, median=1.0, max=1, IQR outliers=0
+
+Function Class: min=0, median=0.0, max=3, IQR outliers=0
+
+Q Wave: min=0, median=0.0, max=1, IQR outliers=16
+
+St Elevation: min=0, median=0.0, max=1, IQR outliers=14
+
+St Depression: min=0, median=0.0, max=1, IQR outliers=71
+
+Tinversion: min=0, median=0.0, max=1, IQR outliers=0
+
+FBS: min=62, median=98.0, max=400, IQR outliers=30
+
+CR: min=0.5, median=1.0, max=2.2, IQR outliers=8
+
+TG: min=37, median=122.0, max=1050, IQR outliers=16
+
+LDL: min=18, median=100.0, max=232, IQR outliers=6
+
+HDL: min=15.9, median=39.0, max=111.0, IQR outliers=6
+
+BUN: min=6, median=16.0, max=52, IQR outliers=17
+
+ESR: min=1, median=15.0, max=90, IQR outliers=13
+
+HB: min=8.9, median=13.2, max=17.6, IQR outliers=7
+
+K: min=3.0, median=4.2, max=6.6, IQR outliers=2
+
+Na: min=128, median=141.0, max=156, IQR outliers=15
+
+WBC: min=3700, median=7100.0, max=18000, IQR outliers=9
+
+Lymph: min=7, median=32.0, max=60, IQR outliers=3
+
+Neut: min=32, median=60.0, max=89, IQR outliers=1
+
+PLT: min=25, median=210.0, max=742, IQR outliers=11
+
+EF-TTE: min=15, median=50.0, max=60, IQR outliers=15
+
+Region RWMA: min=0, median=0.0, max=4, IQR outliers=28
+
+No values outside the configured review thresholds.
+
+IMPORTANT: IQR outliers and review-threshold flags are not proof of incorrect data. Do not automatically delete them.
+
+==============================================================================
+SECTION 4 — DRAFT DATA DICTIONARY
+==============================================================================
+               column   dtype  non_missing_count  missing_count  unique_count                                                                                                                                                       example_values  is_target                          units_or_definition
+                  Age   int64                303              0            46                                                                                                                                53 | 67 | 54 | 66 | 50 | 55 | 72 | 58      False Needs verification from source documentation
+               Weight   int64                303              0            54                                                                                                                                90 | 70 | 54 | 67 | 87 | 75 | 80 | 84      False Needs verification from source documentation
+               Length   int64                303              0            44                                                                                                                        175 | 157 | 164 | 158 | 153 | 165 | 163 | 170      False Needs verification from source documentation
+                  Sex     str                303              0             2                                                                                                                                                         Male | Fmale      False Needs verification from source documentation
+                  BMI float64                303              0           263 29.387755102040817 | 28.398718000730252 | 20.077334919690664 | 26.83864765261977 | 37.165192874535435 | 24.489795918367346 | 29.384756657483933 | 26.122448979591837      False Needs verification from source documentation
+                   DM   int64                303              0             2                                                                                                                                                                0 | 1      False Needs verification from source documentation
+                  HTN   int64                303              0             2                                                                                                                                                                1 | 0      False Needs verification from source documentation
+       Current Smoker   int64                303              0             2                                                                                                                                                                1 | 0      False Needs verification from source documentation
+            EX-Smoker   int64                303              0             2                                                                                                                                                                0 | 1      False Needs verification from source documentation
+                   FH   int64                303              0             2                                                                                                                                                                0 | 1      False Needs verification from source documentation
+              Obesity     str                303              0             2                                                                                                                                                                Y | N      False Needs verification from source documentation
+                  CRF     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+                  CVA     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+       Airway disease     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+      Thyroid Disease     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+                  CHF     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+                  DLP     str                303              0             2                                                                                                                                                                Y | N      False Needs verification from source documentation
+                   BP   int64                303              0            17                                                                                                                         110 | 140 | 100 | 118 | 130 | 90 | 170 | 150      False Needs verification from source documentation
+                   PR   int64                303              0            21                                                                                                                               80 | 100 | 70 | 50 | 84 | 74 | 76 | 60      False Needs verification from source documentation
+                Edema   int64                303              0             2                                                                                                                                                                0 | 1      False Needs verification from source documentation
+Weak Peripheral Pulse     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+           Lung rales     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+      Systolic Murmur     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+     Diastolic Murmur     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+   Typical Chest Pain   int64                303              0             2                                                                                                                                                                0 | 1      False Needs verification from source documentation
+              Dyspnea     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+       Function Class   int64                303              0             4                                                                                                                                                        0 | 3 | 2 | 1      False Needs verification from source documentation
+             Atypical     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+           Nonanginal     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+        Exertional CP     str                303              0             1                                                                                                                                                                    N      False Needs verification from source documentation
+            LowTH Ang     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+               Q Wave   int64                303              0             2                                                                                                                                                                0 | 1      False Needs verification from source documentation
+         St Elevation   int64                303              0             2                                                                                                                                                                0 | 1      False Needs verification from source documentation
+        St Depression   int64                303              0             2                                                                                                                                                                1 | 0      False Needs verification from source documentation
+           Tinversion   int64                303              0             2                                                                                                                                                                1 | 0      False Needs verification from source documentation
+                  LVH     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+   Poor R Progression     str                303              0             2                                                                                                                                                                N | Y      False Needs verification from source documentation
+                  BBB     str                303              0             3                                                                                                                                                      N | LBBB | RBBB      False Needs verification from source documentation
+                  FBS   int64                303              0           113                                                                                                                              90 | 80 | 85 | 78 | 104 | 86 | 130 | 69      False Needs verification from source documentation
+                   CR float64                303              0            18                                                                                                                        0.7 | 1.0 | 1.2 | 0.8 | 0.9 | 0.6 | 1.3 | 1.1      False Needs verification from source documentation
+                   TG   int64                303              0           147                                                                                                                           250 | 309 | 103 | 63 | 170 | 139 | 83 | 80      False Needs verification from source documentation
+                  LDL   int64                303              0           110                                                                                                                            155 | 121 | 70 | 55 | 110 | 119 | 85 | 90      False Needs verification from source documentation
+                  HDL float64                303              0            47                                                                                                                30.0 | 36.0 | 45.0 | 27.0 | 50.0 | 34.0 | 55.0 | 59.0      False Needs verification from source documentation
+                  BUN   int64                303              0            33                                                                                                                                 8 | 30 | 17 | 16 | 13 | 12 | 19 | 15      False Needs verification from source documentation
+                  ESR   int64                303              0            58                                                                                                                                  7 | 26 | 10 | 76 | 27 | 18 | 38 | 4      False Needs verification from source documentation
+                   HB float64                303              0            66                                                                                                                15.6 | 13.9 | 13.5 | 12.1 | 13.2 | 14.1 | 16.1 | 11.6      False Needs verification from source documentation
+                    K float64                303              0            27                                                                                                                        4.7 | 4.4 | 4.0 | 4.2 | 4.8 | 4.3 | 3.4 | 4.6      False Needs verification from source documentation
+                   Na   int64                303              0            25                                                                                                                        141 | 156 | 139 | 142 | 140 | 128 | 148 | 146      False Needs verification from source documentation
+                  WBC   int64                303              0            78                                                                                                              5700 | 7700 | 7400 | 13000 | 9200 | 7300 | 9400 | 12200      False Needs verification from source documentation
+                Lymph   int64                303              0            50                                                                                                                                39 | 38 | 18 | 55 | 26 | 58 | 25 | 49      False Needs verification from source documentation
+                 Neut   int64                303              0            52                                                                                                                                52 | 55 | 60 | 72 | 39 | 66 | 33 | 74      False Needs verification from source documentation
+                  PLT   int64                303              0           135                                                                                                                        261 | 165 | 230 | 742 | 274 | 194 | 292 | 410      False Needs verification from source documentation
+               EF-TTE   int64                303              0            11                                                                                                                                50 | 40 | 55 | 45 | 25 | 30 | 35 | 60      False Needs verification from source documentation
+          Region RWMA   int64                303              0             5                                                                                                                                                    0 | 4 | 2 | 3 | 1      False Needs verification from source documentation
+                  VHD     str                303              0             4                                                                                                                                         N | mild | Severe | Moderate      False Needs verification from source documentation
+                  LAD     str                303              0             2                                                                                                                                                    Stenotic | Normal       True Needs verification from source documentation
+                  LCX     str                303              0             2                                                                                                                                                    Normal | Stenotic       True Needs verification from source documentation
+                  RCA     str                303              0             2                                                                                                                                                    Stenotic | Normal       True Needs verification from source documentation
+                 Cath     str                303              0             2                                                                                                                                                         CAD | Normal       True Needs verification from source documentation
+
+The dictionary records observed data properties. It does not establish units or clinical meanings.
+
+==============================================================================
+SECTION 5 — REDUNDANCY AND DERIVED FEATURES
+==============================================================================
+Constant columns: ['Exertional CP']
+
+BMI:
+  dtype: float64
+  unique values: 263
+  sample values: [29.387755102040817, 28.398718000730252, 20.077334919690664, 26.83864765261977, 37.165192874535435, 24.489795918367346, 29.384756657483933, 26.122448979591837, 31.615792841281195, 24.56747404844291, 26.573129251700685, 28.621470374642232]
+
+Weight:
+  dtype: int64
+  unique values: 54
+  sample values: [90, 70, 54, 67, 87, 75, 80, 84, 71, 63, 81, 68]
+
+Length:
+  dtype: int64
+  unique values: 44
+  sample values: [175, 157, 164, 158, 153, 165, 163, 170, 168, 151, 154, 155]
+
+Obesity:
+  dtype: str
+  unique values: 2
+  sample values: ['Y', 'N']
+
+Typical Chest Pain:
+  dtype: int64
+  unique values: 2
+  sample values: [0, 1]
+
+Atypical:
+  dtype: str
+  unique values: 2
+  sample values: ['N', 'Y']
+
+Nonanginal:
+  dtype: str
+  unique values: 2
+  sample values: ['N', 'Y']
+
+Numeric pairs with absolute Spearman correlation >= 0.85:
+feature_1 feature_2  spearman_correlation  abs_correlation
+    Lymph      Neut             -0.912341         0.912341
+
+Review redundancy before modeling. Correlation alone does not prove leakage, and correlated features need not always be removed.
+
+==============================================================================
+SECTION 6 — UNIVARIATE LEAKAGE SCREENING
+==============================================================================
+This is an in-sample screening exercise, NOT model performance.
+All four target columns are excluded from candidate features.
+
+Encoding notes:
+Sex: 1 = 'Male', 0 = 'Fmale'
+Obesity: 1 = 'Y', 0 = 'N'
+CRF: 1 = 'Y', 0 = 'N'
+CVA: 1 = 'Y', 0 = 'N'
+Airway disease: 1 = 'Y', 0 = 'N'
+Thyroid Disease: 1 = 'Y', 0 = 'N'
+CHF: 1 = 'Y', 0 = 'N'
+DLP: 1 = 'Y', 0 = 'N'
+Weak Peripheral Pulse: 1 = 'Y', 0 = 'N'
+Lung rales: 1 = 'Y', 0 = 'N'
+Systolic Murmur: 1 = 'Y', 0 = 'N'
+Diastolic Murmur: 1 = 'Y', 0 = 'N'
+Dyspnea: 1 = 'Y', 0 = 'N'
+Atypical: 1 = 'Y', 0 = 'N'
+Nonanginal: 1 = 'Y', 0 = 'N'
+LowTH Ang: 1 = 'Y', 0 = 'N'
+LVH: 1 = 'Y', 0 = 'N'
+Poor R Progression: 1 = 'Y', 0 = 'N'
+VHD: ordinal N=0, mild=1, Moderate=2, Severe=3
+
+Skipped constant features:
+['Exertional CP']
+
+Top univariate associations for Cath:
+target            feature original_feature_group   n  univariate_auc_absolute_direction  review_if_auc_above_0_85
+  Cath Typical Chest Pain     Typical Chest Pain 303                           0.799010                     False
+  Cath                Age                    Age 303                           0.723898                     False
+  Cath           Atypical               Atypical 303                           0.712005                     False
+  Cath             EF-TTE                 EF-TTE 303                           0.686968                     False
+  Cath        Region RWMA            Region RWMA 303                           0.671669                     False
+  Cath                 BP                     BP 303                           0.661398                     False
+  Cath                HTN                    HTN 303                           0.656370                     False
+  Cath                FBS                    FBS 303                           0.651261                     False
+  Cath                ESR                    ESR 303                           0.633913                     False
+  Cath                 DM                     DM 303                           0.627714                     False
+  Cath         Tinversion             Tinversion 303                           0.619652                     False
+  Cath                 TG                     TG 303                           0.618002                     False
+  Cath                  K                      K 303                           0.614676                     False
+  Cath                 PR                     PR 303                           0.602384                     False
+  Cath              Lymph                  Lymph 303                           0.579635                     False
+
+Top univariate associations for LAD:
+target            feature original_feature_group   n  univariate_auc_absolute_direction  review_if_auc_above_0_85
+   LAD Typical Chest Pain     Typical Chest Pain 303                           0.732311                     False
+   LAD             EF-TTE                 EF-TTE 303                           0.708434                     False
+   LAD                Age                    Age 303                           0.677159                     False
+   LAD        Region RWMA            Region RWMA 303                           0.675209                     False
+   LAD           Atypical               Atypical 303                           0.665254                     False
+   LAD                ESR                    ESR 303                           0.621424                     False
+   LAD               Neut                   Neut 303                           0.608892                     False
+   LAD              Lymph                  Lymph 303                           0.608847                     False
+   LAD                 PR                     PR 303                           0.598242                     False
+   LAD         Tinversion             Tinversion 303                           0.597996                     False
+   LAD                 BP                     BP 303                           0.595776                     False
+   LAD                HTN                    HTN 303                           0.591270                     False
+   LAD                FBS                    FBS 303                           0.581585                     False
+   LAD                 Na                     Na 303                           0.572348                     False
+   LAD                WBC                    WBC 303                           0.570666                     False
+
+Top univariate associations for LCX:
+target            feature original_feature_group   n  univariate_auc_absolute_direction  review_if_auc_above_0_85
+   LCX                Age                    Age 303                           0.680855                     False
+   LCX Typical Chest Pain     Typical Chest Pain 303                           0.649388                     False
+   LCX                 BP                     BP 303                           0.616871                     False
+   LCX                PLT                    PLT 303                           0.601160                     False
+   LCX                FBS                    FBS 303                           0.590976                     False
+   LCX                 TG                     TG 303                           0.589035                     False
+   LCX                HTN                    HTN 303                           0.587870                     False
+   LCX             EF-TTE                 EF-TTE 303                           0.587231                     False
+   LCX                 CR                     CR 303                           0.582001                     False
+   LCX           Atypical               Atypical 303                           0.579741                     False
+   LCX                 DM                     DM 303                           0.573712                     False
+   LCX                ESR                    ESR 303                           0.573392                     False
+   LCX                BUN                    BUN 303                           0.570332                     False
+   LCX        Region RWMA            Region RWMA 303                           0.563824                     False
+   LCX                 Na                     Na 303                           0.559531                     False
+
+Top univariate associations for RCA:
+target            feature original_feature_group   n  univariate_auc_absolute_direction  review_if_auc_above_0_85
+   RCA Typical Chest Pain     Typical Chest Pain 303                           0.649749                     False
+   RCA               Neut                   Neut 303                           0.635037                     False
+   RCA                Age                    Age 303                           0.634851                     False
+   RCA              Lymph                  Lymph 303                           0.628353                     False
+   RCA                 DM                     DM 303                           0.627541                     False
+   RCA                ESR                    ESR 303                           0.613803                     False
+   RCA           Atypical               Atypical 303                           0.612434                     False
+   RCA                FBS                    FBS 303                           0.603894                     False
+   RCA                WBC                    WBC 303                           0.582521                     False
+   RCA             EF-TTE                 EF-TTE 303                           0.578158                     False
+   RCA                HTN                    HTN 303                           0.574909                     False
+   RCA                 TG                     TG 303                           0.565998                     False
+   RCA                Sex                    Sex 303                           0.561752                     False
+   RCA                 BP                     BP 303                           0.561473                     False
+   RCA                 CR                     CR 303                           0.561357                     False
+
+Features requiring manual review (AUC > 0.85):
+None
+
+High univariate AUC is a review flag, not proof of leakage. Check timing, clinical availability and feature definitions.
+
+==============================================================================
+SECTION 7 — VALIDATION FEASIBILITY
+==============================================================================
+
+Target: Cath
+Total usable rows: 303
+Negative class (0): 87
+Positive class (1): 216
+3-fold stratification: class counts permit it (minority count=87)
+5-fold stratification: class counts permit it (minority count=87)
+10-fold stratification: class counts permit it (minority count=87)
+
+Target: LAD
+Total usable rows: 303
+Negative class (0): 126
+Positive class (1): 177
+3-fold stratification: class counts permit it (minority count=126)
+5-fold stratification: class counts permit it (minority count=126)
+10-fold stratification: class counts permit it (minority count=126)
+
+Target: LCX
+Total usable rows: 303
+Negative class (0): 184
+Positive class (1): 119
+3-fold stratification: class counts permit it (minority count=119)
+5-fold stratification: class counts permit it (minority count=119)
+10-fold stratification: class counts permit it (minority count=119)
+
+Target: RCA
+Total usable rows: 303
+Negative class (0): 189
+Positive class (1): 114
+3-fold stratification: class counts permit it (minority count=114)
+5-fold stratification: class counts permit it (minority count=114)
+10-fold stratification: class counts permit it (minority count=114)
+
+Joint vessel-label patterns:
+All vessels normal: 86
+All three vessels: 63
+LAD only: 57
+LAD and LCX: 33
+LAD and RCA: 24
+RCA only: 17
+LCX only: 13
+LCX and RCA: 10
+
+Very rare joint patterns can make joint stratification impractical. Do not merge patterns without a justified reason.
+
+Approximate 95% ROC-AUC confidence-interval half-widths:
+target                  evaluation  positive_count_approx  negative_count_approx  assumed_auc  approx_ci_halfwidth
+  Cath                 20% holdout                     43                     17          0.7                0.138
+  Cath                 20% holdout                     43                     17          0.8                0.113
+  Cath All rows pooled out-of-fold                    216                     87          0.7                0.061
+  Cath All rows pooled out-of-fold                    216                     87          0.8                0.050
+   LAD                 20% holdout                     35                     25          0.7                0.131
+   LAD                 20% holdout                     35                     25          0.8                0.110
+   LAD All rows pooled out-of-fold                    177                    126          0.7                0.058
+   LAD All rows pooled out-of-fold                    177                    126          0.8                0.049
+   LCX                 20% holdout                     24                     37          0.7                0.139
+   LCX                 20% holdout                     24                     37          0.8                0.120
+   LCX All rows pooled out-of-fold                    119                    184          0.7                0.062
+   LCX All rows pooled out-of-fold                    119                    184          0.8                0.054
+   RCA                 20% holdout                     23                     38          0.7                0.140
+   RCA                 20% holdout                     23                     38          0.8                0.122
+   RCA All rows pooled out-of-fold                    114                    189          0.7                0.063
+   RCA All rows pooled out-of-fold                    114                    189          0.8                0.054
+
+==============================================================================
+DONE
+==============================================================================
+Data file unchanged: YES
+Sections that failed: none
+Files written:
+  reports\audit_step2\audit_step2_output.txt
+  reports\audit_step2\target_inconsistent_rows.csv
+  reports\audit_step2\numeric_summary.csv
+  reports\audit_step2\draft_data_dictionary.csv
+  reports\audit_step2\high_numeric_correlations.csv
+  reports\audit_step2\univariate_auc_screen.csv
+  reports\audit_step2\validation_class_counts.csv
+  reports\audit_step2\joint_vessel_patterns.csv
+  reports\audit_step2\auc_ci_width.csv

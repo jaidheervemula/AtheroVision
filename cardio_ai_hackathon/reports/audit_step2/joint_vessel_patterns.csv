@@ -1,0 +1,9 @@
+﻿pattern,LAD,LCX,RCA,count
+All vessels normal,0,0,0,86
+All three vessels,1,1,1,63
+LAD only,1,0,0,57
+LAD and LCX,1,1,0,33
+LAD and RCA,1,0,1,24
+RCA only,0,0,1,17
+LCX only,0,1,0,13
+LCX and RCA,0,1,1,10

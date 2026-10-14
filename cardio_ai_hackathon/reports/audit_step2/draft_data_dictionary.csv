@@ -1,0 +1,60 @@
+﻿column,dtype,non_missing_count,missing_count,unique_count,example_values,is_target,units_or_definition
+Age,int64,303,0,46,53 | 67 | 54 | 66 | 50 | 55 | 72 | 58,False,Needs verification from source documentation
+Weight,int64,303,0,54,90 | 70 | 54 | 67 | 87 | 75 | 80 | 84,False,Needs verification from source documentation
+Length,int64,303,0,44,175 | 157 | 164 | 158 | 153 | 165 | 163 | 170,False,Needs verification from source documentation
+Sex,str,303,0,2,Male | Fmale,False,Needs verification from source documentation
+BMI,float64,303,0,263,29.387755102040817 | 28.398718000730252 | 20.077334919690664 | 26.83864765261977 | 37.165192874535435 | 24.489795918367346 | 29.384756657483933 | 26.122448979591837,False,Needs verification from source documentation
+DM,int64,303,0,2,0 | 1,False,Needs verification from source documentation
+HTN,int64,303,0,2,1 | 0,False,Needs verification from source documentation
+Current Smoker,int64,303,0,2,1 | 0,False,Needs verification from source documentation
+EX-Smoker,int64,303,0,2,0 | 1,False,Needs verification from source documentation
+FH,int64,303,0,2,0 | 1,False,Needs verification from source documentation
+Obesity,str,303,0,2,Y | N,False,Needs verification from source documentation
+CRF,str,303,0,2,N | Y,False,Needs verification from source documentation
+CVA,str,303,0,2,N | Y,False,Needs verification from source documentation
+Airway disease,str,303,0,2,N | Y,False,Needs verification from source documentation
+Thyroid Disease,str,303,0,2,N | Y,False,Needs verification from source documentation
+CHF,str,303,0,2,N | Y,False,Needs verification from source documentation
+DLP,str,303,0,2,Y | N,False,Needs verification from source documentation
+BP,int64,303,0,17,110 | 140 | 100 | 118 | 130 | 90 | 170 | 150,False,Needs verification from source documentation
+PR,int64,303,0,21,80 | 100 | 70 | 50 | 84 | 74 | 76 | 60,False,Needs verification from source documentation
+Edema,int64,303,0,2,0 | 1,False,Needs verification from source documentation
+Weak Peripheral Pulse,str,303,0,2,N | Y,False,Needs verification from source documentation
+Lung rales,str,303,0,2,N | Y,False,Needs verification from source documentation
+Systolic Murmur,str,303,0,2,N | Y,False,Needs verification from source documentation
+Diastolic Murmur,str,303,0,2,N | Y,False,Needs verification from source documentation
+Typical Chest Pain,int64,303,0,2,0 | 1,False,Needs verification from source documentation
+Dyspnea,str,303,0,2,N | Y,False,Needs verification from source documentation
+Function Class,int64,303,0,4,0 | 3 | 2 | 1,False,Needs verification from source documentation
+Atypical,str,303,0,2,N | Y,False,Needs verification from source documentation
+Nonanginal,str,303,0,2,N | Y,False,Needs verification from source documentation
+Exertional CP,str,303,0,1,N,False,Needs verification from source documentation
+LowTH Ang,str,303,0,2,N | Y,False,Needs verification from source documentation
+Q Wave,int64,303,0,2,0 | 1,False,Needs verification from source documentation
+St Elevation,int64,303,0,2,0 | 1,False,Needs verification from source documentation
+St Depression,int64,303,0,2,1 | 0,False,Needs verification from source documentation
+Tinversion,int64,303,0,2,1 | 0,False,Needs verification from source documentation
+LVH,str,303,0,2,N | Y,False,Needs verification from source documentation
+Poor R Progression,str,303,0,2,N | Y,False,Needs verification from source documentation
+BBB,str,303,0,3,N | LBBB | RBBB,False,Needs verification from source documentation
+FBS,int64,303,0,113,90 | 80 | 85 | 78 | 104 | 86 | 130 | 69,False,Needs verification from source documentation
+CR,float64,303,0,18,0.7 | 1.0 | 1.2 | 0.8 | 0.9 | 0.6 | 1.3 | 1.1,False,Needs verification from source documentation
+TG,int64,303,0,147,250 | 309 | 103 | 63 | 170 | 139 | 83 | 80,False,Needs verification from source documentation
+LDL,int64,303,0,110,155 | 121 | 70 | 55 | 110 | 119 | 85 | 90,False,Needs verification from source documentation
+HDL,float64,303,0,47,30.0 | 36.0 | 45.0 | 27.0 | 50.0 | 34.0 | 55.0 | 59.0,False,Needs verification from source documentation
+BUN,int64,303,0,33,8 | 30 | 17 | 16 | 13 | 12 | 19 | 15,False,Needs verification from source documentation
+ESR,int64,303,0,58,7 | 26 | 10 | 76 | 27 | 18 | 38 | 4,False,Needs verification from source documentation
+HB,float64,303,0,66,15.6 | 13.9 | 13.5 | 12.1 | 13.2 | 14.1 | 16.1 | 11.6,False,Needs verification from source documentation
+K,float64,303,0,27,4.7 | 4.4 | 4.0 | 4.2 | 4.8 | 4.3 | 3.4 | 4.6,False,Needs verification from source documentation
+Na,int64,303,0,25,141 | 156 | 139 | 142 | 140 | 128 | 148 | 146,False,Needs verification from source documentation
+WBC,int64,303,0,78,5700 | 7700 | 7400 | 13000 | 9200 | 7300 | 9400 | 12200,False,Needs verification from source documentation
+Lymph,int64,303,0,50,39 | 38 | 18 | 55 | 26 | 58 | 25 | 49,False,Needs verification from source documentation
+Neut,int64,303,0,52,52 | 55 | 60 | 72 | 39 | 66 | 33 | 74,False,Needs verification from source documentation
+PLT,int64,303,0,135,261 | 165 | 230 | 742 | 274 | 194 | 292 | 410,False,Needs verification from source documentation
+EF-TTE,int64,303,0,11,50 | 40 | 55 | 45 | 25 | 30 | 35 | 60,False,Needs verification from source documentation
+Region RWMA,int64,303,0,5,0 | 4 | 2 | 3 | 1,False,Needs verification from source documentation
+VHD,str,303,0,4,N | mild | Severe | Moderate,False,Needs verification from source documentation
+LAD,str,303,0,2,Stenotic | Normal,True,Needs verification from source documentation
+LCX,str,303,0,2,Normal | Stenotic,True,Needs verification from source documentation
+RCA,str,303,0,2,Stenotic | Normal,True,Needs verification from source documentation
+Cath,str,303,0,2,CAD | Normal,True,Needs verification from source documentation

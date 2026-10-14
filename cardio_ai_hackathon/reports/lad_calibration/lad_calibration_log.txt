@@ -1,0 +1,28 @@
+test_lad_calibration.py | educational prototype, internal CV only
+Python 3.13.5, scikit-learn 1.9.1
+Features: 48 (20 numeric, 28 categorical); forbidden targets ['Cath', 'LAD', 'LCX', 'RCA'] absent: True
+Labels: 1 = 'Stenotic' (n=177), 0 = 'Normal' (n=126)
+Estimator (cloned from deployment): RandomForestClassifier(min_samples_leaf=3, n_estimators=300, n_jobs=-1,
+                       random_state=42)
+WARNING: 1 'unknown category' warning(s) (sigmoid; outer folds [15]; feature(s) ['CVA']): a rare category was absent from a training split and was encoded as all zeros for those predictions. This is not leakage, but it is a small-sample effect.
+Outer CV complete: 25 folds; fits = 25 baseline + 150 calibrated (inner 5 + 1 refit per fold)
+Baseline reproduction: max |OOF - saved per-repeat OOF| = 4.44e-16; max |fold AUC - Phase 1| = 1.11e-16 -> REPRODUCED
+
+=== SUMMARY (repeat-averaged OOF; 95% bootstrap CI of difference) ===
+  roc_auc                uncal 0.847 | sigmoid 0.845 | diff -0.002 (-0.004 to -0.001)
+  brier                  uncal 0.164 | sigmoid 0.154 | diff -0.010 (-0.018 to -0.002)
+  log_loss               uncal 0.504 | sigmoid 0.476 | diff -0.029 (-0.054 to -0.002)
+  calibration_slope      uncal 1.818 | sigmoid 1.001 | diff -0.817 (-1.047 to -0.657)
+  calibration_intercept  uncal 0.021 | sigmoid -0.002 | diff -0.024 (-0.105 to +0.067)
+  sensitivity            uncal 0.886 | sigmoid 0.862 | diff -0.024 (-0.039 to -0.011)
+  specificity            uncal 0.643 | sigmoid 0.675 | diff +0.032 (+0.015 to +0.053)
+  precision              uncal 0.777 | sigmoid 0.788 | diff +0.011 (+0.002 to +0.022)
+  f1                     uncal 0.828 | sigmoid 0.824 | diff -0.004 (-0.014 to +0.005)
+  accuracy               uncal 0.785 | sigmoid 0.784 | diff -0.001 (-0.012 to +0.011)
+
+Baseline reproduced: True
+Protected files changed: none
+Outputs: C:\Users\<user>\Desktop\cardio_ai_hackathon\reports\lad_calibration
+Warnings: 1 'unknown category' warning(s) (sigmoid; outer folds [15]; feature(s) ['CVA']): a rare category was absent from a training split and was encoded as all zeros for those predictions. This is not leakage, but it is a small-sample effect.
+Total time 181.3s
+LAD CALIBRATION EXPERIMENT COMPLETE (no decision made; deployed model unchanged)

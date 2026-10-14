@@ -1,0 +1,42 @@
+Review run 2026-10-10T17:47:05+00:00 on a replica of 34 files, each SHA-256-identical to the laptop copy. Python 3.13.16, scikit-learn 1.9.1, pandas 3.0.5, numpy 2.5.3.
+[PASS] Data: dataset hash equals config -- 739343245c2ba578...
+[PASS] Data: 303 rows x 59 columns, no duplicate rows, no missing values -- (303, 59)
+[WARNING] Data: row 93 label inconsistency present and unchanged -- row 93 = {'Cath': 'Normal', 'LAD': 'Stenotic', 'LCX': 'Normal', 'RCA': 'Normal'}; contradicts 'CAD = any vessel stenotic'; kept as recorded in all analyses
+[PASS] Artifacts: Cath: models/phase1_candidates/Cath__logreg_reduced.joblib exists, hash = config = laptop, loads, classes [0,1], features = config = metadata, no target inputs -- LogisticRegression, 48 inputs, sha b27f7886cff8..., positive 'CAD'
+[PASS] Artifacts: LAD: models/phase1_candidates/LAD__rf_reduced.joblib exists, hash = config = laptop, loads, classes [0,1], features = config = metadata, no target inputs -- RandomForestClassifier, 48 inputs, sha 04ee2c01869a..., positive 'Stenotic'
+[PASS] Artifacts: LCX: models/phase1_candidates/LCX__logreg_clinical.joblib exists, hash = config = laptop, loads, classes [0,1], features = config = metadata, no target inputs -- LogisticRegression, 7 inputs, sha 44d4a2b34f97..., positive 'Stenotic'
+[PASS] Artifacts: RCA: models/phase1_candidates/RCA__logreg_clinical.joblib exists, hash = config = laptop, loads, classes [0,1], features = config = metadata, no target inputs -- LogisticRegression, 7 inputs, sha dfa6626bc904..., positive 'Stenotic'
+[PASS] Schema: inference input schema = union of the four models' inputs, no target columns -- 48 fields
+[PASS] Artifacts: no calibrated or replacement LAD artifact selected in config -- config LAD = rf_reduced; laptop models/ holds only the 20 Phase 1 candidates + metadata.json
+[WARNING] Config: config status field -- config 'status' is 'provisional'. It is unchanged by this read-only review; the freeze is recorded here instead.
+[PASS] Inference: CADPredictor loads all four via config (hash-checked); labels and feature lists agree with config; probability = pipeline predict_proba[:,1] -- threshold 0.5; disclaimer present: True
+[PASS] Explain: LR explanations exact & additive in log-odds; LAD declared approximate, non-additive (gap reported) -- LAD non_additive_gap on synthetic input = -0.032
+[WARNING] Explain: LAD feature contributions are approximate -- single-feature background replacement; not additive; ignores feature correlation; must be labelled approximate in the UI
+[PASS] Tests: unittest discover (test_inference + test_explain) in audit replica -- Ran 39 tests: OK
+[PASS] Tests: scripts/check_inference.py and scripts/check_explain.py in audit replica -- both passed
+[NOT VERIFIED] Tests: same tests in the local Windows .venv -- the reviewer cannot execute the Windows .venv and no saved local test log exists; replica uses Python 3.13.16 / pandas 3.0.5 vs laptop Python 3.13.5 / pandas 3.0.6 (scikit-learn 1.9.1 on both). Run the commands in the review to confirm.
+[PASS] Protocol: RepeatedStratifiedKFold 5x5 seed 42 per target; threshold 0.5 (untuned) in script, metadata and config -- train_phase1.py constants, metadata.json cv, config decision_threshold
+[WARNING] Protocol: no independent locked test set -- all 303 patients used for CV, selection and refitting (evaluation_audit.md)
+[PASS] Metrics: Cath: quoted ROC-AUC 0.920 = recomputed repeat-averaged OOF AUC; config value = fold-mean -- repeat-averaged 0.9204 (95% CI 0.889-0.949); fold-mean 0.9224 (config 0.9224)
+[PASS] Metrics: LAD: quoted ROC-AUC 0.847 = recomputed repeat-averaged OOF AUC; config value = fold-mean -- repeat-averaged 0.8468 (95% CI 0.801-0.887); fold-mean 0.8526 (config 0.8526)
+[PASS] Metrics: LCX: quoted ROC-AUC 0.739 = recomputed repeat-averaged OOF AUC; config value = fold-mean -- repeat-averaged 0.7395 (95% CI 0.681-0.796); fold-mean 0.7429 (config 0.7429)
+[PASS] Metrics: RCA: quoted ROC-AUC 0.737 = recomputed repeat-averaged OOF AUC; config value = fold-mean -- repeat-averaged 0.7369 (95% CI 0.680-0.790); fold-mean 0.7404 (config 0.7404)
+[WARNING] Metrics: two ROC-AUC estimands in use (repeat-averaged vs 25-fold mean) -- config/model_selection.json stores fold-means (0.922/0.853/0.743/0.740); final evaluation reports repeat-averaged (0.920/0.847/0.739/0.737). Both are correct; documentation must name the estimand used.
+[PASS] Metrics: final evaluation reproduced Phase 1 OOF and fold AUCs (laptop run) -- 4 tasks reproduced; log reports 'changed: none'
+[WARNING] Metrics: LAD deployed-model probabilities under-dispersed -- LAD calibration slope 1.82 (ideal 1); probabilities must not be read as risk estimates
+[PASS] Metrics: row 93 sensitivity analysis for selected models -- max |ROC-AUC change| when excluded = 0.0082
+[PASS] LAD calibration: results match stated values; recorded as alternative only; deployed LAD unchanged -- Brier 0.164->0.154, log loss 0.504->0.476, slope 1.82->1.00, ROC-AUC diff -0.002; baseline reproduced True
+[WARNING] LAD calibration: fit warning during experiment -- 1 'unknown category' warning (CVA, inner split of outer fold 15); documented, not leakage
+[PASS] LCX/RCA experiment: no candidate has an ROC-AUC improvement interval above 0; none adopted; baselines reproduced -- LCX lr_balanced_clinical +0.000 [-0.001,+0.002]; LCX lr_strongreg_clinical +0.000 [-0.010,+0.012]; LCX lr_strongreg_reduced -0.030 [-0.072,+0.008]; LCX rf_conservative_reduced -0.006 [-0.045,+0.030]; RCA lr_balanced_clinical +0.001 [-0.002,+0.003]; RCA lr_strongreg_clinical +0.000 [-0.013,+0.014]; RCA lr_strongreg_reduced -0.010 [-0.056,+0.037]; RCA rf_conservative_reduced -0.018 [-0.055,+0.024]
+[PASS] Error analysis: all alignment checks passed (laptop run), existing files unchanged -- 33/33 PASS
+[WARNING] Error analysis: LCX/RCA low sensitivity at 0.5 -- sensitivity LCX 0.523, RCA 0.432; persistent FN LCX 42, RCA 60
+[WARNING] Data: rare categorical levels in the 48-input schema -- 14 levels with <15 patients (e.g. CVA=Y 5, Weak Peripheral Pulse=Y 5, CRF=Y 6); CHF and LowTH Ang excluded as too rare
+[WARNING] Limitations: 303 patients from one centre -- recorded in final_ml_review.md
+[WARNING] Limitations: no external or clinical validation -- recorded in final_ml_review.md
+[WARNING] Limitations: model-selection optimism (selected on the same folds; RCA revised post hoc; selection-rule thresholds set after results) -- recorded in final_ml_review.md
+[WARNING] Limitations: untuned 0.5 threshold -- recorded in final_ml_review.md
+[WARNING] Limitations: independent models may disagree (CAD vs vessels) -- recorded in final_ml_review.md
+
+Totals: {'PASS': 22, 'WARNING': 14, 'NOT VERIFIED': 1, 'FAIL': 0}
+
+Read-only confirmation (laptop, after writing outputs): all 103 pre-existing project files have identical SHA-256 before and after the review; only the 4 files in reports/final_ml_review/ were added.

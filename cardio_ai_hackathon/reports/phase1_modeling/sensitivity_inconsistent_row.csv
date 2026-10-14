@@ -1,0 +1,9 @@
+task,model,n_rows,auc_primary,auc_without_inconsistent,difference
+Cath,logreg_all,302,0.9191,0.927,0.0079
+Cath,rf_all,302,0.9222,0.9325,0.0103
+LAD,logreg_all,302,0.8198,0.8152,-0.0046
+LAD,rf_all,302,0.8505,0.8566,0.0061
+LCX,logreg_all,302,0.6845,0.698,0.0135
+LCX,rf_all,302,0.7357,0.7532,0.0176
+RCA,logreg_all,302,0.7182,0.7213,0.0031
+RCA,rf_all,302,0.7192,0.7236,0.0044
